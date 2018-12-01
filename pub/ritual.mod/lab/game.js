@@ -12,12 +12,14 @@ var game = {
         }
 
         log.out('Level Up to #' + this.level)
-        lab.camera.detachAll()
-        lib.levelLoader.loadFile(levelRes)
+        this.loadLevel(levelRes)
     },
     gameOwer: function(){
+        this.loadLevel(res.levels.death);
+    },
+    loadLevel: function(levelRes){
         lab.camera.detachAll()
-        lib.levelLoader.loadFile(res.levels.death)
+        lib.levelLoader.loadFile(levelRes)
     }
 
 };
