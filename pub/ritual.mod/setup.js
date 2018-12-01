@@ -19,7 +19,6 @@ module.exports = function() {
         else if (this.keys[3]) this.y += (this.speed/this.scale) * dt
     })
 
-    lib.levelLoader.loadFile(res.levels[1])
     lab.game.nextLevel();
 
     sys.spawn('playerInfo', {

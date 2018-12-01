@@ -1,8 +1,8 @@
 module.exports = function(e) {
     switch(e.key) {
-    case 'ArrowLeft': lab.camera.keys[0] = false; break;
-    case 'ArrowUp': lab.camera.keys[1] = false; break;
-    case 'ArrowRight': lab.camera.keys[2] = false; break;
-    case 'ArrowDown': lab.camera.keys[3] = false; break;
+        case 'ArrowLeft': lab.camera.master.keys.left = false; break;
+        case 'ArrowUp': lab.camera.master.keys.up = false; break;
+        case 'ArrowRight': lab.camera.master.keys.right = false; break;
+        case 'ArrowDown': lab.camera.master.keys.down = false; break;
     }
-}
+};
