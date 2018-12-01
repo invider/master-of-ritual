@@ -1,5 +1,7 @@
 'use strict'
 
+// @depends(dna/Character)
+
 let Master = function(st) {
     dna.Character.call(this, st)
 
@@ -28,7 +30,7 @@ Master.prototype.fixCamera = function() {
 }
 
 Master.prototype.hit = function(source) {
-    lib.sfx(res.sfx.hit, 0.7)
+    //lib.sfx(res.sfx.hit, 0.7)
 }
 
 Master.prototype.evo = function(dt){

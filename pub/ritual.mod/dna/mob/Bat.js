@@ -1,7 +1,7 @@
 'use strict'
 
 let Bat = function(st) {
-    dna.CharacterMob.call(this, st)
+    dna.Mob.call(this, st)
 
     this.w = 1
     this.h = 1
@@ -13,6 +13,7 @@ let Bat = function(st) {
     this.speed = 0.6
 };
 
-sys.extend(Bat, dna.CharacterMob)
+
+sys.extend(Bat, dna.Mob)
 
 module.exports = Bat 

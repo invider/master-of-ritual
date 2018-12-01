@@ -485,6 +485,156 @@ LabFrame.prototype.draw = function() {
     }
 }
 
+let evalLoadedContent = function(script, _) {
+    //try {
+        if (script.ext === 'js') {
+            let __ = script.context
+            var scope = {}
+            var module = {}
+
+            // provide lexical scope for mod context and scope object for this. definitions
+            let code = '(function ' + name + '(_, ctx, module, sys, lib, res, dna, env, lab, mod, log, trap) {'
+                + script.src
+            + '}).call(scope, __, __.ctx, module, __.sys, __.lib, __.res, __.dna, __.env, __.lab, __.mod, __.log, __.trap)'
+
+            let val = eval(code)
+
+            // apply definitions
+            let declarationsFound = _.scan(scope)
+
+            // fix the mode if there is a value
+            if (val) {
+                _.patch(script.base, script.path, val)
+            } else if (module.exports) {
+                // no value is reture - try to find a value
+                _.patch(script.base, script.path, module.exports)
+            } else if (declarationsFound === 0) {
+                _scene.log.sys('no value, exports or declarations from ' + script.path)
+            }
+        } else if (script.ext === 'json') {
+            let val = JSON.parse(script.src)
+            if (val) _.patch(script.base, script.path, val)
+        } else if (script.ext === 'txt') {
+            _.patch(script.base, script.path, script.src)
+        } else if (script.ext === 'lines') {
+            let lines = script.src.match(/[^\r\n]+/g)
+            lines = lines.map(l => {
+                let ci = l.indexOf('--')
+                if (ci >= 0) {
+                    return l.substring(0, ci-1).trim()
+                } else {
+                    return l.trim()
+                }
+            })
+            lines = lines.filter(l => l.length > 0)
+            _.patch(script.base, script.path, lines)
+        } else if (script.ext === 'csv') {
+            let lines = script.src.match(/[^\r\n]+/g);
+            // naming array
+            let names = lines[0].split(',').map(e => e.trim())
+            // parse objects
+            let objects = []
+            for (let i = 1; i < lines.length; i++) {
+                let l = lines[i].trim()
+                if (l.length > 0 && !l.startsWith('--')) {
+                    // TODO more intellectual parsing, so escaped string can be included (e.g. 'one,two')
+                    let ol = l.split(',').map(e => e.trim()).map(e => {
+                        return matchType(e)
+                    })
+                    let obj = {}
+                    ol.forEach((e, j) => {
+                        if (j < names.length) {
+                            obj[names[j]] = e
+                        } else {
+                            _.log.warn('eval-'+batch, '=> '
+                                + script.path + '@' + (i+1)
+                                + ': excesive value [' + e + ']')
+                        }
+                    })
+                    objects.push(obj)
+                }
+            }
+            _.patch(script.base, script.path, objects)
+        } else if (script.ext === 'prop') {
+            let lines = script.src.match(/[^\r\n]+/g);
+
+            // parse definitions
+            let prop = {}
+            for (let i = 0; i < lines.length; i++) {
+                let l = lines[i].trim()
+                if (l.length > 0 && !l.startsWith('--')) {
+                    let pair = l.split(':')
+                    if (pair.length === 2) {
+                        let key = matchType(pair[0])
+                        let val = matchType(pair[1])
+                        prop[key] = val
+                    }
+                }
+            }
+            _.patch(script.base, script.path, prop)
+        } else if (script.ext === 'fun') {
+            // custom function
+            script.fun()
+        }
+    //} catch (e) {
+    //    _scene.log.err('jam-loader', 'error in [' + script.path + ']' + e)
+    //    throw e
+    //}
+}
+
+
+let checkScriptDependencies = function(script, batch) {
+    if (script.ext !== 'js') return []
+
+    let res = []
+
+    let extendRegExp = new RegExp('@depends\\((.*?)\\)', 'g')
+
+    let match
+    while(match = extendRegExp.exec(script.src)) {
+        let key = match[1]
+        let dependency
+        batch.forEach(s => {
+            if (s.path === key) dependency = s
+        })
+        if (dependency) res.push(dependency)
+        else throw 'dependency ' + key + ' is not found'
+    }
+    return res
+}
+
+let sortLoadedBatch = function(batch) {
+    //this._execList[batch].sort((a, b) => a.path.localeCompare(b.path))
+    let res = []
+
+    var workBatch = batch.slice();
+
+    let check = function(script) {
+        checkScriptDependencies(script, batch).forEach(e => check(e))
+        let i = workBatch.indexOf(script)
+        if (i >= 0) {
+            workBatch.splice(i, 1)
+            res.push(script)
+        }
+    }
+
+    while(workBatch.length > 0) {
+        check(workBatch[0])
+    }
+
+    return res
+}
+
+let evalLoadedBatch = function(ibatch, batch, _) {
+
+    let sortedBatch = sortLoadedBatch(batch)
+
+    sortedBatch.forEach( script => {
+        _.log.sys('eval-'+ibatch, '=> ' + script.path)
+        evalLoadedContent(script, _)
+    })
+}
+
 // Mod context container
 var Mod = function(initObj) {
     this._$ = _scene
@@ -512,105 +662,14 @@ var Mod = function(initObj) {
                 // sort batch alphanumerically before the evaluation
                 this._execList[batch].sort((a, b) => a.path.localeCompare(b.path))
 
+                evalLoadedBatch(batch, this._execList[batch], this._)
+                /*
                 this._execList[batch].forEach( script => {
                     let _ = this._
                     _.log.sys('eval-'+batch, '=> ' + script.path)
-
-                    //try {
-                        if (script.ext === 'js') {
-                            let __ = script.context
-                            var scope = {}
-                            var module = {}
-
-                            // provide lexical scope for mod context and scope object for this. definitions
-                            let code = '(function ' + name + '(_, ctx, module, sys, lib, res, dna, env, lab, mod, log, trap) {'
-                                + script.src
-                            + '}).call(scope, __, __.ctx, module, __.sys, __.lib, __.res, __.dna, __.env, __.lab, __.mod, __.log, __.trap)'
-
-                            let val = eval(code)
-
-                            // apply definitions
-                            let declarationsFound = _.scan(scope)
-
-                            // fix the mode if there is a value
-                            if (val) {
-                                _.patch(script.base, script.path, val)
-                            } else if (module.exports) {
-                                // no value is reture - try to find a value
-                                _.patch(script.base, script.path, module.exports)
-                            } else if (declarationsFound === 0) {
-                                _scene.log.sys('no value, exports or declarations from ' + script.path)
-                            }
-                        } else if (script.ext === 'json') {
-                            let val = JSON.parse(script.src)
-                            if (val) _.patch(script.base, script.path, val)
-                        } else if (script.ext === 'txt') {
-                            _.patch(script.base, script.path, script.src)
-                        } else if (script.ext === 'lines') {
-                            let lines = script.src.match(/[^\r\n]+/g)
-                            lines = lines.map(l => {
-                                let ci = l.indexOf('--')
-                                if (ci >= 0) {
-                                    return l.substring(0, ci-1).trim()
-                                } else {
-                                    return l.trim()
-                                }
-                            })
-                            lines = lines.filter(l => l.length > 0)
-                            _.patch(script.base, script.path, lines)
-                        } else if (script.ext === 'csv') {
-                            let lines = script.src.match(/[^\r\n]+/g);
-                            // naming array
-                            let names = lines[0].split(',').map(e => e.trim())
-                            // parse objects
-                            let objects = []
-                            for (let i = 1; i < lines.length; i++) {
-                                let l = lines[i].trim()
-                                if (l.length > 0 && !l.startsWith('--')) {
-                                    // TODO more intellectual parsing, so escaped string can be included (e.g. 'one,two')
-                                    let ol = l.split(',').map(e => e.trim()).map(e => {
-                                        return matchType(e)
-                                    })
-                                    let obj = {}
-                                    ol.forEach((e, j) => {
-                                        if (j < names.length) {
-                                            obj[names[j]] = e
-                                        } else {
-                                            _.log.warn('eval-'+batch, '=> '
-                                                + script.path + '@' + (i+1)
-                                                + ': excesive value [' + e + ']')
-                                        }
-                                    })
-                                    objects.push(obj)
-                                }
-                            }
-                            _.patch(script.base, script.path, objects)
-                        } else if (script.ext === 'prop') {
-                            let lines = script.src.match(/[^\r\n]+/g);
-
-                            // parse definitions
-                            let prop = {}
-                            for (let i = 0; i < lines.length; i++) {
-                                let l = lines[i].trim()
-                                if (l.length > 0 && !l.startsWith('--')) {
-                                    let pair = l.split(':')
-                                    if (pair.length === 2) {
-                                        let key = matchType(pair[0])
-                                        let val = matchType(pair[1])
-                                        prop[key] = val
-                                    }
-                                }
-                            }
-                            _.patch(script.base, script.path, prop)
-                        } else if (script.ext === 'fun') {
-                            // custom function
-                            script.fun()
-                        }
-                    //} catch (e) {
-                    //    _scene.log.err('jam-loader', 'error in [' + script.path + ']' + e)
-                    //    throw e
-                    //}
+                    evalLoadedContent(script, _)
                 })
+                */
 
                 // clean up batch
                 this._execList[batch] = []

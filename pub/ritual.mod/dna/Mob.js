@@ -1,13 +1,13 @@
 'use strict'
 
-let CharacterMob = function(st) {
+let Mob = function(st) {
     dna.Character.call(this, st);
     this.speed = 0.5;
 };
 
-sys.extend(CharacterMob, dna.Character);
+sys.extend(Mob, dna.Character);
 
-CharacterMob.prototype.calcDiff = function(diff){
+Mob.prototype.calcDiff = function(diff){
     if (diff < 0) {
         return -1;
     } else if (diff > 0){
@@ -16,7 +16,7 @@ CharacterMob.prototype.calcDiff = function(diff){
     return 0;
 };
 
-CharacterMob.prototype.evo = function(dt){
+Mob.prototype.evo = function(dt){
     dna.Character.prototype.evo.call(this, dt);
     let master = lab.camera.master;
     if (master) {
@@ -25,4 +25,4 @@ CharacterMob.prototype.evo = function(dt){
     }
 };
 
-module.exports = CharacterMob;
+module.exports = Mob;

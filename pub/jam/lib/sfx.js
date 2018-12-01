@@ -10,7 +10,7 @@ module.exports = function(src, vol, pan) {
         src = res.selectOne(src)
     }
 
-    if (src && src instanceof Audio) {
+    if (src && src instanceof Audio && src.readyState === 4) {
         src.volume = vol
         src.play()
     }

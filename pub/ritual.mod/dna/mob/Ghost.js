@@ -1,7 +1,7 @@
 'use strict'
 
 let Ghost = function(st) {
-    dna.CharacterMob.call(this, st)
+    dna.Mob.call(this, st)
 
     this.w = 1
     this.h = 1
@@ -13,6 +13,6 @@ let Ghost = function(st) {
     this.speed = 0.3
 };
 
-sys.extend(Ghost, dna.CharacterMob)
+sys.extend(Ghost, dna.Mob)
 
 module.exports = Ghost 

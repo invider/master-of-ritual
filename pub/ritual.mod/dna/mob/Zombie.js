@@ -1,7 +1,7 @@
 'use strict'
 
 let Zombie = function(st) {
-    dna.CharacterMob.call(this, st);
+    dna.Mob.call(this, st);
 
     this.w = 1;
     this.h = 1;
@@ -13,6 +13,6 @@ let Zombie = function(st) {
     this.speed = 0.2;
 }
 
-sys.extend(Zombie, dna.CharacterMob);
+sys.extend(Zombie, dna.Mob);
 
 module.exports = Zombie;
