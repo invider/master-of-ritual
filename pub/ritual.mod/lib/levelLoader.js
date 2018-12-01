@@ -2,7 +2,7 @@ var TYPEMAP = {
     '*': 'levelWall',
     'w': 'wall',
     '@': 'mob/Master',
-    'z': 'mob/Zoombie'
+    'z': 'mob/Zombie'
 };
 
 let LevelLoader = {
