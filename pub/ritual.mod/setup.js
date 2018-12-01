@@ -29,21 +29,24 @@ module.exports = function() {
 
     sys.spawn('Grid', {
         color: '#ff7080',
-        top: 100,
-        x1: -10,
-        x1: 10,
-        y1: -10,
+        x1: 0,
+        x2: 20,
+        y1: 0,
         y2: 10,
-        step: 1,
+        step: 2,
+        w: 0.02,
+        h: 0.02,
+        th: 0.3,
         coordinates: true,
-        font: '5px zekton'
+        font: '0.3px zekton'
     }, 'camera')
 
+    // camera view crosshair
     sys.spawn('Grid', {
         color: '#505050',
-        x1: 0,
+        x1: 50,
         x2: ctx.width,
-        y1: 0,
+        y1: 50,
         y2: ctx.height,
         step: 100,
         style: 'target',

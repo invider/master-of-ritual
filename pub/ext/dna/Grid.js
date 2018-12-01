@@ -1,7 +1,10 @@
 let Grid = function(dat) {
     this.color = '#40ff00'
     this.font = '14px zekton'
+    this.th = 14
     this.step = 50
+    this.w = 1
+    this.h = 1
 
     sys.augment(this, dat)
 
@@ -49,12 +52,12 @@ Grid.prototype.coord = function(x, y) {
         ctx.font = this.font
         ctx.textAlign = 'left'
         ctx.textBaseline = 'top'
-        ctx.fillText('' + x + 'x' + y, x+5, y+2)
+        ctx.fillText('' + x + 'x' + y, x + 2*this.w, y + this.th)
     }
 }
 
 Grid.prototype.mark = function(x, y) {
-    ctx.fillRect(x-1, y-1, 2, 2)
+    ctx.fillRect(x-this.w, y-this.h, this.w*2, this.h*2)
 }
 
 Grid.prototype.draw = function() {
