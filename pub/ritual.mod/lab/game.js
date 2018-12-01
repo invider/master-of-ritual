@@ -1,5 +1,9 @@
 var game = {
-    level: 1
+    level: 0,
+    nextLevel: function(){
+        this.level ++;
+        lib.levelLoader.loadFile(res.levels[this.level])
+    }
 };
 
 module.exports = game;

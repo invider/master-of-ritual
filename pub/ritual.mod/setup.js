@@ -26,9 +26,7 @@ module.exports = function() {
     //         return lab.camera.getViewport()
     //     }
     // }, 'camera')
-
-    lib.levelLoader.loadFile(res.levels[1])
-
+    lab.game.nextLevel();
     /*
     sys.spawn('mob/Master', {
         name: 'master',
