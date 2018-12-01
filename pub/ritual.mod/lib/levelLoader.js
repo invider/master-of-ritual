@@ -31,7 +31,6 @@ let LevelLoader = {
                 h: 1,
                 name: this.formatName(TYPEMAP[symbol])
             }, "camera");
-            console.log(x, y, symbol, param)
         })
     }
 };
