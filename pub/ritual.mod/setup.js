@@ -26,15 +26,15 @@ module.exports = function() {
         }
     }, 'camera')
 
-    sys.spawn('Character', {
-        name: 'hero',
+    sys.spawn('mob/Master', {
+        name: 'master',
         tiles: res.sprite,
         x: 0,
         y: 0,
         w: 128,
         h: 128,
         startTilex: 0,
-        endTilex: 5,
+        endTilex: 16,
         framerate: 9,
     }, 'camera')
 

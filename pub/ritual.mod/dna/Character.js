@@ -1,14 +1,14 @@
-let Character = function(dat) {
+let Character = function(st) {
     this.alive = true
     this.x = ctx.width/2
     this.y = ctx.height/2
     this.dx = 0
     this.dy = 0
-    this.startTilex = 0
+    this.startTilex = 0 // tilex is an index from tilemap
     this.endTilex = 0
     this.framerate = 1
 
-    sys.augment(this, dat)
+    sys.augment(this, st)
 
     this.tilexTime = 0
     this.tilex = this.startTilex

@@ -62,4 +62,4 @@ typings/
 .next
 
 # MacOS X
-*/.DS_Store
+.DS_Store
