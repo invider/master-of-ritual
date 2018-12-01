@@ -16,18 +16,9 @@ module.exports = function() {
         else if (this.keys[2]) this.x += (this.speed/this.scale) * dt
         else if (this.keys[3]) this.y += (this.speed/this.scale) * dt
     })
-    //
-    // sys.spawn('Tiles', {
-    //     x: 0,
-    //     y: 0,
-    //     map: res.tiles,
-    //     set: res.tileMapping,
-    //     viewport: function() {
-    //         return lab.camera.getViewport()
-    //     }
-    // }, 'camera')
 
     lib.levelLoader.loadFile(res.levels[1])
+    lab.game.nextLevel();
 
     sys.spawn('mob/Master', {
         name: 'master',
