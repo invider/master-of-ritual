@@ -37,6 +37,7 @@ Master.prototype.hit = function(source, dt) {
         this.hp -= source.damage * dt;
         if (this.hp < 0){
             this.hp =0;
+            lab.game.gameOwer()
         }
     }
 

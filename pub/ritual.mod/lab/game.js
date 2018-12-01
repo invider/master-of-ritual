@@ -14,7 +14,12 @@ var game = {
         log.out('Level Up to #' + this.level)
         lab.camera.detachAll()
         lib.levelLoader.loadFile(levelRes)
+    },
+    gameOwer: function(){
+        lab.camera.detachAll()
+        lib.levelLoader.loadFile(res.levels.death)
     }
+
 };
 
 module.exports = game;
