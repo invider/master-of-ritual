@@ -5,6 +5,7 @@ var TYPEMAP = {
     'z': 'mob/Zombie',
     'b': 'mob/Bat',
     'g': 'mob/Ghost',
+    's': 'mob/Skeleton',
     'A': 'altar'
 };
 
