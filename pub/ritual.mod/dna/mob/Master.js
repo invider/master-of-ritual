@@ -1,7 +1,7 @@
 'use strict'
 
 let Master = function(st) {
-    dna.CharacterPlayer.call(this, st)
+    dna.Character.call(this, st)
 
     this.w = 1;
     this.h = 1;
@@ -20,7 +20,7 @@ let Master = function(st) {
     this.framerate = 2;
 };
 
-sys.extend(Master, dna.CharacterPlayer);
+sys.extend(Master, dna.CharacterMob);
 
 Master.prototype.evo = function(dt){
     this.__superProto__.evo.call(this, dt)

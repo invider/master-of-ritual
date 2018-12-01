@@ -12,6 +12,6 @@ let Bat = function(st) {
     this.framerate = 6
 };
 
-sys.extend(Bat, dna.Character)
+sys.extend(Bat, dna.CharacterMob)
 
 module.exports = Bat 
