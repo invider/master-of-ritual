@@ -11,7 +11,7 @@ module.exports = {
                             && s.x-s.w/2 <= t.x+t.w/2
                             && s.y+s.h/2 >= t.y-t.h/2
                             && s.y-s.h/2 <= t.y+t.h/2) {
-                    s.hit(t)
+                    s.hit(t, dt)
                 }
             },
 

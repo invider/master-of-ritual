@@ -31,7 +31,15 @@ Master.prototype.fixCamera = function() {
     lab.camera.y = this.y
 }
 
-Master.prototype.hit = function(source) {
+Master.prototype.hit = function(source, dt) {
+
+    if (source instanceof dna.Mob){
+        this.hp -= source.damage * dt;
+        if (this.hp < 0){
+            this.hp =0;
+        }
+    }
+
     //lib.sfx(res.sfx.hit, 0.7)
 }
 

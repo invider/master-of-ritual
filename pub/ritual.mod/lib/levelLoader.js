@@ -5,8 +5,7 @@ var TYPEMAP = {
     'z': 'mob/Zombie',
     'b': 'mob/Bat',
     'g': 'mob/Ghost',
-    'A': 'altar',
-    'P': 'altar',
+    'A': 'altar'
 };
 
 let LevelLoader = {

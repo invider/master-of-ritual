@@ -26,12 +26,6 @@ var playerInfo = function() {
             }
             return opts.caption + v + " ";
         },
-        hit: function(el){
-            debugger;
-            if (el instanceof Mob){
-                this.hp -= el.damage;
-            }
-        },
         draw: function() {
             // let spawned = this._.selectOneNumber(constants.path.DUDES_SPAWNED_COUNT);
             // let dead = this._.selectOneNumber(constants.path.DUDES_DEAD);
