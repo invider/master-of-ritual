@@ -26,6 +26,12 @@ var playerInfo = function() {
             }
             return opts.caption + v + " ";
         },
+        hit: function(el){
+            debugger;
+            if (el instanceof Mob){
+                this.hp -= el.damage;
+            }
+        },
         draw: function() {
             // let spawned = this._.selectOneNumber(constants.path.DUDES_SPAWNED_COUNT);
             // let dead = this._.selectOneNumber(constants.path.DUDES_DEAD);
@@ -36,6 +42,7 @@ var playerInfo = function() {
             //
 
             let txt = this.addVar({caption: "Level:", value: lab.game.level });
+            txt += this.addVar({caption: "HP:", value: lab.camera.master.hp });
             // txt2 += this.addVar({caption: "Goal: ", value:  escaped + "/" + goal });
             // txt2 += this.addVar({caption: " Walking: ", value:  spawned - escaped - dead });
             //

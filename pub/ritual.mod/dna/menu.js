@@ -7,7 +7,6 @@ var menu = function() {
 
         },
         draw: function() {
-            debugger;
             res.menu.draw(0, this.x-0.5, this.y-0.5, 1, 1);
         }
     })

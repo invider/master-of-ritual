@@ -7,7 +7,9 @@ let Master = function(st) {
 
     this.w = 1;
     this.h = 1;
+    this.hp = 100;
     this.speed = 1;
+    this.inventory = [];
 
     this.keys = {
         up:false,

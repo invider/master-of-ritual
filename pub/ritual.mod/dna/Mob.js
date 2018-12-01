@@ -3,6 +3,7 @@
 let Mob = function(st) {
     dna.Character.call(this, st);
     this.speed = 0.5;
+    this.damage = 3;
 };
 
 sys.extend(Mob, dna.Character);

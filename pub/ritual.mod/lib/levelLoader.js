@@ -6,7 +6,7 @@ var TYPEMAP = {
     'b': 'mob/Bat',
     'g': 'mob/Ghost',
     'A': 'altar',
-    'P': 'portalNextLvl',
+    'P': 'altar',
 };
 
 let LevelLoader = {
