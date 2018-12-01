@@ -16,8 +16,8 @@ let Master = function(st) {
 
     this.tiles = res.master;
     this.startTilex = 0;
-    this.endTilex = 2;
-    this.framerate = 2;
+    this.endTilex = 4;
+    this.framerate = 5;
 };
 
 sys.extend(Master, dna.CharacterMob);
@@ -26,7 +26,6 @@ Master.prototype.evo = function(dt){
     this.__superProto__.evo.call(this, dt)
 
     if (this.keys.left){
-        debugger;
         this.x -= dt * this.speed;
     }
     if (this.keys.right){
@@ -38,7 +37,6 @@ Master.prototype.evo = function(dt){
     if (this.keys.up){
         this.y -= dt * this.speed;
     }
-
 
 };
 

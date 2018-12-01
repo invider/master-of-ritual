@@ -1,3 +1,6 @@
+
+const CAMERA_ZOOM = 128
+
 module.exports = function() {
     log.out('setting up')
 
@@ -6,8 +9,8 @@ module.exports = function() {
         Z: 10,
         x: 0,
         y: 0,
-        scale: 64,
-        speed: 8*64,
+        scale: CAMERA_ZOOM,
+        speed: 8*CAMERA_ZOOM,
         keys: [],
     })
 
@@ -65,4 +68,6 @@ module.exports = function() {
         font: '14px Zekton',
         color: '#60FF20',
     })
+
+    lab.camera.target = lab.camera.master
 }
