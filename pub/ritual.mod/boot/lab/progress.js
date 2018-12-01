@@ -1,7 +1,7 @@
 module.exports = {
     draw: function() {
         // clear the screen
-        ctx.fillStyle = "#250535"
+        ctx.fillStyle = '#151208'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
         
         let loaded = this._.___.res._loaded
@@ -23,7 +23,7 @@ module.exports = {
         // bar status
         let w = ctx.width*0.8
         let h = 10
-        ctx.fillStyle = '#301060'
+        ctx.fillStyle = '#402010'
         ctx.fillRect((ctx.width-w)/2, ctx.height/2 + 20, w, h)
         ctx.fillStyle = '#a05020'
         ctx.fillRect((ctx.width-w)/2, ctx.height/2 + 20, w*(percent/100), h)
