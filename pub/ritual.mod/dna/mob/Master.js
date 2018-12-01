@@ -28,7 +28,6 @@ Master.prototype.fixCamera = function() {
 }
 
 Master.prototype.hit = function(source) {
-
     lib.sfx(res.sfx.hit, 0.7)
 }
 
