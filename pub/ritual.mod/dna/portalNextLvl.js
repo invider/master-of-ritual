@@ -8,8 +8,8 @@ PortalNextLvl.prototype.evo = function(dt) {
 };
 
 PortalNextLvl.prototype.hit = function(char) {
-      debugger;
-    if (this.active && char instanceof dna.Master){
+    if (dna.Master && this.active && char instanceof dna.Master){
+        debugger
         lab.game.nextLevel();
     }
 };
