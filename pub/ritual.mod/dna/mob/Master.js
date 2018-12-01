@@ -27,6 +27,11 @@ Master.prototype.fixCamera = function() {
     lab.camera.y = this.y
 }
 
+Master.prototype.hit = function(source) {
+
+    lib.sfx(res.sfx.hit, 0.7)
+}
+
 Master.prototype.evo = function(dt){
     dna.Character.prototype.evo.call(this, dt);
 
