@@ -26,7 +26,6 @@ Master.prototype.evo = function(dt){
     this.__superProto__.evo.call(this, dt)
 
     if (this.keys.left){
-        debugger;
         this.x -= dt * this.speed;
     }
     if (this.keys.right){
