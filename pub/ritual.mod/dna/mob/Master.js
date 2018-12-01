@@ -22,6 +22,14 @@ let Master = function(st) {
 
 sys.extend(Master, dna.CharacterMob);
 
+Master.prototype.fixCamera = function() {
+    //let limit = ctx.height/4
+    //let mx = lab.camera.getScreenX(this.x)
+    //let my = lab.camera.getScreenY(this.y)
+
+    lab.camera.target = this
+}
+
 Master.prototype.evo = function(dt){
     this.__superProto__.evo.call(this, dt)
 
@@ -37,6 +45,7 @@ Master.prototype.evo = function(dt){
     if (this.keys.up){
         this.y -= dt * this.speed;
     }
+    this.fixCamera()
 
 };
 
