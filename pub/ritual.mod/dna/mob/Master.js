@@ -16,11 +16,19 @@ let Master = function(st) {
 
     this.tiles = res.master;
     this.startTilex = 0;
-    this.endTilex = 2;
-    this.framerate = 2;
+    this.endTilex = 4;
+    this.framerate = 5;
 };
 
 sys.extend(Master, dna.CharacterMob);
+
+Master.prototype.fixCamera = function() {
+    //let limit = ctx.height/4
+    //let mx = lab.camera.getScreenX(this.x)
+    //let my = lab.camera.getScreenY(this.y)
+
+    lab.camera.target = this
+}
 
 Master.prototype.evo = function(dt){
     this.__superProto__.evo.call(this, dt)
@@ -37,7 +45,7 @@ Master.prototype.evo = function(dt){
     if (this.keys.up){
         this.y -= dt * this.speed;
     }
-
+    this.fixCamera()
 
 };
 
