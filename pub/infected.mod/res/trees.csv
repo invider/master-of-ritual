@@ -1,0 +1,7 @@
+canBuy,RED,GREEN,BLUE,name
+1,2,1,2,GreenSporeTree
+1,1,2,2,RedSporeTree
+1,2,2,1,BlueSporeTree
+1,8,8,8,AttackTree
+1,8,8,8,TeleporterTree
+0,8,8,8,TeleporterBackTree

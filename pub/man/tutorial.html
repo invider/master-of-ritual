@@ -1,0 +1,131 @@
+<html>
+<head>
+<style>
+    @font-face {
+        font-family: 'zekton';
+        src: url('res/zekton.ttf');
+    }
+    * {
+      font-family: zekton;
+    }
+</style>
+</head>
+<body>
+
+<h1 id="collider-jam">Collider.JAM</h1>
+<p><strong><em>Welcome to the World of Game Jamming!</em></strong></p>
+<p>This tutorial provides you with necessary information to get you started.</p>
+<p><strong>collider.jam</strong> is a game framework for rapid game prototyping. It is crafted<br>to provide fast tools for game prototyping from scratch and fast develop/test<br>cycles.</p>
+<p>The core principle is that everything on the scene is represented by a single tree.<br>All game state is on that tree and you can change it by modifying the tree.<br>All nodes are available as a JavaScript object hierarchy.</p>
+<p>Also, the tree is mirrored by the filesystem folder <strong>/pub</strong> on the web server.<br>So you can create new nodes and add new code and resources just simply by adding new files at appropriate folders.</p>
+<p>How it works? As follows:</p>
+<ul>
+<li>add <em>hero.js</em> at <em>/pub/mod/lab/</em> to define a hero actor.</li>
+<li>add <em>monster.js</em> at <em>/pub/mod/dna/</em> to define a prototype for a monster to spawn.</li>
+<li>add <em>background.png</em> at <em>/pub/mod/res/</em> to automatically load background image.<br><em>and so on...</em></li>
+</ul>
+<h1 id="hello">Hello</h1>
+<p>Following steps needs to be completed before you begin:</p>
+<ul>
+<li>Install node.js</li>
+<li>Download and unpack collider.jam distribution</li>
+<li>start collider.jam server by running ./srv script in the top folder</li>
+</ul>
+<p>Top folder defines a node.js http server that serves static content from<br>/pub folder. This folder contains client parts of game framework<br>and all components of your game.</p>
+<p>To show something, we need to create a <strong>prop</strong>.</p>
+<p>The <strong>prop</strong> has draw() function that shows it every cycle.<br>But no specified behavior.</p>
+<pre><code><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s1">&#39;jam/fix.js&#39;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+  <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+      <span class="c1">// declare an entity in the lab</span>
+      <span class="k">this</span><span class="p">[</span><span class="s1">&#39;@lab/hello&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+
+          <span class="c1">// this function draws the entity</span>
+          <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+              <span class="kd">let</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_</span><span class="p">.</span><span class="nx">ctx</span>
+
+              <span class="c1">// fill background</span>
+              <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="s2">&quot;#220044&quot;</span>
+              <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span>
+
+              <span class="c1">// show text</span>
+              <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="s2">&quot;#FFFF00&quot;</span>
+              <span class="nx">ctx</span><span class="p">.</span><span class="nx">font</span><span class="o">=</span><span class="s2">&quot;32px Impact&quot;</span><span class="p">;</span>
+              <span class="nx">ctx</span><span class="p">.</span><span class="nx">textAlign</span> <span class="o">=</span> <span class="s2">&quot;center&quot;</span>
+              <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillText</span><span class="p">(</span><span class="s1">&#39;Hello JAM!&#39;</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="o">&lt;</span><span class="err">/script&gt;</span>
+<span class="o">&lt;</span><span class="err">/body&gt; &lt;/html&gt;</span>
+</pre></div>
+
+<h1 id="motion">Motion</h1>
+<p>Let us add some motion.<br><strong>evo(delta)</strong> function runs each cycle and is responsible for updating actor state.<br>It accepts time in seconds passed since the last cycle.</p>
+<pre><code><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nx">body</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;jam/fix.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+    <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+      <span class="c1">// declare a dot actor</span>
+      <span class="k">this</span><span class="p">[</span><span class="s1">&#39;@lab/dot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="c1">// state</span>
+          <span class="nx">dt</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+          <span class="c1">// evolve</span>
+          <span class="nx">evo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">)</span> <span class="p">{</span>
+              <span class="c1">// init x and y if necessary</span>
+              <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span>
+                    <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">0</span>
+                    <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="nx">scene</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">width</span>
+                    <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="nx">scene</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">width</span><span class="o">/</span><span class="mi">2</span>
+                  <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span>
+              <span class="p">}</span>
+              <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">dt</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="c1">// new time and direction</span>
+                  <span class="k">this</span><span class="p">.</span><span class="nx">dt</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">3</span>
+                  <span class="k">this</span><span class="p">.</span><span class="nx">dx</span> <span class="o">=</span> <span class="p">(</span><span class="mi">50</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+                  <span class="k">this</span><span class="p">.</span><span class="nx">dy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">50</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+              <span class="p">}</span>
+              <span class="c1">// move point and delta time</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">dx</span> <span class="o">*</span> <span class="nx">delta</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">dy</span> <span class="o">*</span> <span class="nx">delta</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">dt</span> <span class="o">-=</span> <span class="nx">delta</span>
+          <span class="p">},</span>
+          <span class="c1">// show the dot</span>
+          <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+              <span class="kd">let</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_</span><span class="p">.</span><span class="nx">ctx</span>
+              <span class="c1">// clear the screen</span>
+              <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="s2">&quot;#220044&quot;</span>
+              <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span>
+              <span class="c1">// draw dot</span>
+              <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span><span class="o">=</span><span class="s2">&quot;#FF0000&quot;</span><span class="p">;</span>
+              <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="o">&lt;</span><span class="err">/script&gt;</span>
+<span class="o">&lt;</span><span class="err">/body&gt; &lt;/html&gt;</span>
+</pre></div>
+
+<h1 id="topology">Topology</h1>
+<p>The whole game state is represented by a single hierarchical tree.<br>It resembles the filesystem and actually are mirrored by static content in /pub.</p>
+<p>You can just include new files in mod at appropriate places<br>and they are going to be loaded automatically with mod.<br>Only /fix folders are not loaded automatically and have to be loaded manually.</p>
+<p><strong>/setup</strong> - functions executed to setup the game before the main cycle</p>
+<p><strong>/sys</strong> - system functions - these are copied to all sub-mods</p>
+<p><strong>/lib</strong> - library functions with no state associated</p>
+<p><strong>/res</strong> - folder for resources (images, sfx, music etc)</p>
+<p><strong>/dna</strong> - folder for prototypes (to spawn into /lab)</p>
+<p><strong>/env</strong> - configuration variables to setup game environment</p>
+<p><strong>/lab</strong> - folder for all currently active props, ghosts and actors</p>
+<p><strong>/mod</strong> - frame to contain all child nodes</p>
+<p><strong>/trap</strong> - functions to catch events (like from mouse and keyboard)</p>
+<p><strong>/log</strong> - logging functions</p>
+<p>Check out mod folder examples in /pub to see possible ways to organize code and resources.</p>
+<h1 id="glossary">Glossary</h1>
+<p><strong>prop</strong> - a node in /lab with specified visuals (<strong>draw()</strong> function) but no behavior in <strong>evo(dt)</strong></p>
+<p><strong>ghost</strong> - a node in /lab with specified behavior in <strong>evo(dt)</strong> but no visuals</p>
+<p><strong>actor</strong> - a node in /lab with visuals and behavior (need to define both <strong>draw()</strong> and <strong>evo(dt)</strong>)</p>
+<p><strong>scene</strong> - main mod that includes all others and represents the root for the game scene tree.</p>
+<p><strong>mod</strong> - a layer with specified structure for prototypes, actors, library functions etc...</p>
+<p><strong>fix</strong> - a patch to the existing mod tree. Can be used to extend existing nodes with additional content and funcionality.</p>
+<p><strong>node</strong> - any js object on the scene.</p>
+<p><strong>frame</strong> - a specific group node that works as a folder for other nodes.</p>
+</body>
+</html>

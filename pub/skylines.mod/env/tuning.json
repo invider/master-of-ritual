@@ -1,0 +1,46 @@
+{
+    "dayLength": 30,
+    "gravity": 30,
+    "minCharge": 70,
+    "initialMaxCharge": 400,
+    "initialRechargeSpeed": 300,
+    "initialOre": 250,
+    "switchTime": 0.5,
+    
+    "maxSectionShift": 0.2,
+    "buildingMinPad": 128,
+
+    "scoopWidth": 256,
+    "scoopHits": 5,
+    "scoopHitTime": 10,
+
+    "meteorProbability": 0.2,
+    "meteorSpeedY": 1000,
+    "meteorSpeedVY": 600,
+    "meteorSpeedX": 200,
+    "meteorSpeedVX": 400,
+    "meteorMinOre": 10,
+    "meteorMaxOre": 50,
+    "oreCounter": 0.25,
+
+	"vehicle": {
+        "minFreq": 0.015,
+        "maxFreq": 2,
+        "populationFactor": 100000,
+		"y1": 0.25,
+		"y2": 0.5,
+		"v1": 30,
+		"v2": 150,
+        "s1": 1,
+        "s2": 3
+	},
+
+    "sectionCapacity": 250,
+    "neonForPopulation": 500,
+    "populationInitialGrowth": 10,
+    "populationGrowthFactor": 0.07,
+    "populationDecreseCapacity": 0.8,
+    "populationDecreseFactor": 0.005,
+    "nextLevelPopulation": 50000,
+    "searchLightFactor": 0.2
+}
