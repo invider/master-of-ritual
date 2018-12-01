@@ -8,7 +8,7 @@ let Zombie = function(st) {
 
     this.tiles = res.zombie;
     this.startTilex = 0;
-    this.endTilex = 0;
+    this.endTilex = 1;
     this.framerate = 6;
     this.speed = 0.2;
 }
