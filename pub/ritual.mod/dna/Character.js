@@ -1,5 +1,6 @@
 let Character = function(st) {
     this.alive = true
+    this.collidable = true
     this.x = ctx.width/2
     this.y = ctx.height/2
     this.dx = 0
