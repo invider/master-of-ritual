@@ -3,7 +3,8 @@ var TYPEMAP = {
     'w': 'wall',
     '@': 'mob/Master',
     'z': 'mob/Zombie',
-    'b': 'mob/Bat'
+    'b': 'mob/Bat',
+    'g': 'mob/Ghost'
 };
 
 let LevelLoader = {
