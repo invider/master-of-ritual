@@ -1,4 +1,4 @@
-let Sprite = function(dat) {
+let Character = function(dat) {
     this.alive = true
     this.x = ctx.width/2
     this.y = ctx.height/2
@@ -15,12 +15,12 @@ let Sprite = function(dat) {
     this.tilexPeriod = 1/this.framerate
 }
 
-Sprite.prototype.move = function(dt) {
+Character.prototype.move = function(dt) {
     this.x += this.dx * dt
     this.y += this.dy * dt
 }
 
-Sprite.prototype.nextFrame = function(dt) {
+Character.prototype.nextFrame = function(dt) {
     if (this.framerate > 0) {
         this.tilexTime += dt
         if (this.tilexTime > this.tilexPeriod) {
@@ -33,12 +33,12 @@ Sprite.prototype.nextFrame = function(dt) {
     }
 }
 
-Sprite.prototype.evo = function(dt) {
+Character.prototype.evo = function(dt) {
     this.move(dt)
     this.nextFrame(dt)
 }
 
-Sprite.prototype.draw = function() {
+Character.prototype.draw = function() {
     ctx.save()
     ctx.translate(this.x-this.w/2, this.y-this.h/2)
 
@@ -58,4 +58,4 @@ Sprite.prototype.draw = function() {
     ctx.restore()
 }
 
-module.exports = Sprite
+module.exports = Character

@@ -26,7 +26,7 @@ module.exports = function() {
         }
     }, 'camera')
 
-    sys.spawn('Sprite', {
+    sys.spawn('Character', {
         name: 'hero',
         tiles: res.sprite,
         x: 0,
