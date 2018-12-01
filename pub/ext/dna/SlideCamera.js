@@ -3,7 +3,7 @@ let SlideCamera = function(dat) {
     this.y = 0
     this.scale = 1
     this.target = false
-    this.targetingPrecision = 0.5
+    this.targetingPrecision = 1
     this.speed = 1
 
     sys.Frame.call(this, dat)

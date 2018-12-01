@@ -23,11 +23,8 @@ let Master = function(st) {
 sys.extend(Master, dna.Character);
 
 Master.prototype.fixCamera = function() {
-    //let limit = ctx.height/4
-    //let mx = lab.camera.getScreenX(this.x)
-    //let my = lab.camera.getScreenY(this.y)
-
-    lab.camera.target = this
+    lab.camera.x = this.x
+    lab.camera.y = this.y
 }
 
 Master.prototype.evo = function(dt){
