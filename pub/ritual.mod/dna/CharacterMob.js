@@ -19,7 +19,7 @@ CharacterMob.prototype.calcDiff = function(diff){
 CharacterMob.prototype.evo = function(dt){
     dna.Character.prototype.evo.call(this, dt);
     let master = lab.camera.master;
-    this.x += this.calcDiff(master.x - this.x ) * this.speed * dt;
+    this.x += this.calcDiff(master.x - this.x) * this.speed * dt;
     this.y += this.calcDiff(master.y - this.y) * this.speed * dt;
 };
 

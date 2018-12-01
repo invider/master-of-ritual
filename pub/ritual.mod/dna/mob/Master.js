@@ -20,7 +20,7 @@ let Master = function(st) {
     this.framerate = 5;
 };
 
-sys.extend(Master, dna.CharacterMob);
+sys.extend(Master, dna.Character);
 
 Master.prototype.fixCamera = function() {
     lab.camera.x = this.x
@@ -28,7 +28,8 @@ Master.prototype.fixCamera = function() {
 }
 
 Master.prototype.evo = function(dt){
-    this.__superProto__.evo.call(this, dt)
+    dna.Character.prototype.evo.call(this, dt);
+
 
     if (this.keys.left){
         this.x -= dt * this.speed;
