@@ -9,4 +9,4 @@ LevelWall.prototype.draw = function() {
     res.tileset.draw(11, this.x, this.y, 1, 1);
 };
 
-module.exports = LevelWall
+module.exports = LevelWall;
