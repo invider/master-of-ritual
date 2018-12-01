@@ -3,10 +3,11 @@ module.exports = function() {
 
     sys.spawn('SlideCamera', {
         name: 'camera',
+        Z: 10,
         x: 0,
         y: 0,
-        scale: 32,
-        speed: 100,
+        scale: 64,
+        speed: 8*64,
         keys: [],
     })
 
