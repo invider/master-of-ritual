@@ -8,7 +8,7 @@ let Bat = function(st) {
 
     this.tiles = res.bat
     this.startTilex = 0
-    this.endTilex = 0
+    this.endTilex = 3
     this.framerate = 6
     this.speed = 0.6
 };

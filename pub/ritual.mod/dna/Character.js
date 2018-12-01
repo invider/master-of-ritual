@@ -33,12 +33,11 @@ Character.prototype.nextFrame = function(dt) {
             }
         }
     }
-}
-
+};
 Character.prototype.evo = function(dt) {
     this.move(dt)
     this.nextFrame(dt)
-}
+};
 
 Character.prototype.draw = function() {
     ctx.save()
