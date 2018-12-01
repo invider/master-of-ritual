@@ -16,8 +16,8 @@ let Master = function(st) {
 
     this.tiles = res.master;
     this.startTilex = 0;
-    this.endTilex = 0;
-    this.framerate = 9;
+    this.endTilex = 4;
+    this.framerate = 4;
 };
 
 sys.extend(Master, dna.Character);
