@@ -1,17 +1,17 @@
 'use strict'
 
 let Zombie = function(st) {
-    dna.Character.call(this, st)
+    dna.Character.call(this, st);
 
-    this.w = 1
-    this.h = 1
+    this.w = 1;
+    this.h = 1;
 
-    this.tiles = res.sprite
-    this.startTilex = 46
-    this.endTilex = 60
-    this.framerate = 6
+    this.tiles = res.zombie;
+    this.startTilex = 0;
+    this.endTilex = 0;
+    this.framerate = 6;
 }
 
-sys.extend(Zombie, dna.Character)
+sys.extend(Zombie, dna.Character);
 
-module.exports = Zombie 
+module.exports = Zombie;

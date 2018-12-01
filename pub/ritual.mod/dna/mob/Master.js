@@ -3,15 +3,41 @@
 let Master = function(st) {
     dna.Character.call(this, st)
 
-    this.w = 1
-    this.h = 1
+    this.w = 1;
+    this.h = 1;
+    this.speed = 1;
 
-    this.tiles = res.sprite
-    this.startTilex = 0
-    this.endTilex = 7
-    this.framerate = 9
-}
+    this.keys = {
+        up:false,
+        right:false,
+        down:false,
+        left:false
+    };
 
-sys.extend(Master, dna.Character)
+    this.tiles = res.master;
+    this.startTilex = 0;
+    this.endTilex = 0;
+    this.framerate = 9;
+};
 
-module.exports = Master
+sys.extend(Master, dna.Character);
+
+Master.prototype.evo = function(dt){
+    if (this.keys.left){
+        debugger;
+        this.x -= dt * this.speed;
+    }
+    if (this.keys.right){
+        this.x += dt * this.speed;
+    }
+    if (this.keys.down){
+        this.y += dt * this.speed;
+    }
+    if (this.keys.up){
+        this.y -= dt * this.speed;
+    }
+
+
+};
+
+module.exports = Master;
