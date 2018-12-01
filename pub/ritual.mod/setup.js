@@ -6,6 +6,7 @@ module.exports = function() {
         x: 0,
         y: 0,
         scale: 32,
+        speed: 100,
         keys: [],
     })
 
@@ -20,18 +21,6 @@ module.exports = function() {
     lib.levelLoader.loadFile(res.levels[1])
     lab.game.nextLevel();
 
-    sys.spawn('mob/Master', {
-        name: 'master',
-        x: 0,
-        y: 0,
-    }, 'camera')
-
-    sys.spawn('mob/Zombie', {
-        name: 'zombie-1',
-        x: 5,
-        y: 5,
-    }, 'camera')
-
     sys.spawn('playerInfo', {
        x: 10,
        y: 10
@@ -39,15 +28,14 @@ module.exports = function() {
 
     sys.spawn('Grid', {
         color: '#ff7080',
-        top: 1000,
-        step: 100,
+        top: 100,
         x1: -10,
         x1: 10,
         y1: -10,
         y2: 10,
         step: 1,
         coordinates: true,
-        font: '1px zekton'
+        font: '5px zekton'
     }, 'camera')
 
     sys.spawn('Grid', {

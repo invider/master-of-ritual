@@ -3,8 +3,8 @@
 let Zombie = function(st) {
     dna.Character.call(this, st)
 
-    this.w = 2
-    this.h = 2
+    this.w = 1
+    this.h = 1
 
     this.tiles = res.sprite
     this.startTilex = 46

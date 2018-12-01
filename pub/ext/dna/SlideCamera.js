@@ -4,7 +4,7 @@ let SlideCamera = function(dat) {
     this.scale = 1
     this.target = false
     this.targetingPrecision = 0.5
-    this.speed = 0.5
+    this.speed = 1
 
     sys.Frame.call(this, dat)
 }
@@ -67,8 +67,8 @@ SlideCamera.prototype.follow = function(dt) {
         return
     }
     let fi = Math.atan2(dy, dx);
-    this.x += Math.cos(fi) * this.speed * this.scale * dt
-    this.y += Math.sin(fi) * this.speed * this.scale * dt
+    this.x += Math.cos(fi) * this.speed / this.scale * dt
+    this.y += Math.sin(fi) * this.speed / this.scale * dt
 }
 
 SlideCamera.prototype.evo = function(dt) {
