@@ -15,34 +15,36 @@ module.exports = function() {
         else if (this.keys[2]) this.x += (this.speed/this.scale) * dt
         else if (this.keys[3]) this.y += (this.speed/this.scale) * dt
     })
+    //
+    // sys.spawn('Tiles', {
+    //     x: 0,
+    //     y: 0,
+    //     map: res.tiles,
+    //     set: res.tileMapping,
+    //     viewport: function() {
+    //         return lab.camera.getViewport()
+    //     }
+    // }, 'camera')
 
-    sys.spawn('Tiles', {
-        x: 0,
-        y: 0,
-        map: res.tiles,
-        set: res.tileMapping,
-        viewport: function() {
-            return lab.camera.getViewport()
-        }
-    }, 'camera')
+    lib.levelLoader.loadFile(res.levels[1])
 
-    sys.spawn('Character', {
-        name: 'hero',
-        tiles: res.sprite,
-        x: 0,
-        y: 0,
-        w: 128,
-        h: 128,
-        startTilex: 0,
-        endTilex: 5,
-        framerate: 9,
-    }, 'camera')
+    // sys.spawn('Character', {
+    //     name: 'hero',
+    //     tiles: res.sprite,
+    //     x: 0,
+    //     y: 0,
+    //     w: 128,
+    //     h: 128,
+    //     startTilex: 0,
+    //     endTilex: 5,
+    //     framerate: 9,
+    // }, 'camera')
 
     sys.spawn('Grid', {
         color: '#ff7080',
         top: 1000,
         step: 100,
-        coordinates: false,
+        coordinates: true,
     }, 'camera')
 
     sys.spawn('Grid', {
