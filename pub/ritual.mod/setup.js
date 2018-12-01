@@ -52,6 +52,12 @@ module.exports = function() {
     //     framerate: 9,
     // }, 'camera')
     //
+
+    sys.spawn('playerInfo', {
+       x: 10,
+       y: 10
+    });
+
     sys.spawn('Grid', {
         color: '#ff7080',
         top: 1000,
