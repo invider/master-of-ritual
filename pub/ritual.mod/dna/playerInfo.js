@@ -6,7 +6,7 @@ var playerInfo = function() {
         evo: function(scene, dt) {
 
         },
-        txt: function(ctx, text1, text2){
+        txt: function(text1, text2){
             ctx.font = '32px kenney, impact, sans-serif';
 
             ctx.fillStyle="#202020";
@@ -26,7 +26,7 @@ var playerInfo = function() {
             }
             return opts.caption + v + " ";
         },
-        draw: function(ctx) {
+        draw: function() {
             // let spawned = this._.selectOneNumber(constants.path.DUDES_SPAWNED_COUNT);
             // let dead = this._.selectOneNumber(constants.path.DUDES_DEAD);
             // let goal = this._.selectOneNumber(constants.path.GOAL)
@@ -34,14 +34,12 @@ var playerInfo = function() {
             // let level = this._.selectOne(constants.path.PLAYER_LEVEL)
             // let levelName = this._.selectOne(constants.path.LEVEL_NAME)
             //
-            // let txt1 = "Level " + level + ":  " + levelName
-            //
-            // let txt2 = ""
-            // //txt += this.addVar({caption: "Alive:", value: (spawned - dead) + "/" + spawned});
+
+            let txt = this.addVar({caption: "Level:", value: lab.game.level });
             // txt2 += this.addVar({caption: "Goal: ", value:  escaped + "/" + goal });
             // txt2 += this.addVar({caption: " Walking: ", value:  spawned - escaped - dead });
             //
-            // this.txt(ctx, txt1, txt2);
+            this.txt(txt, "");
         }
     })
 };
