@@ -29,31 +29,18 @@ module.exports = function() {
 
     lib.levelLoader.loadFile(res.levels[1])
 
-    /*
     sys.spawn('mob/Master', {
         name: 'master',
-        tiles: res.sprite,
         x: 0,
         y: 0,
-        w: 128,
-        h: 128,
-        startTilex: 0,
-        endTilex: 16,
-        framerate: 9,
     }, 'camera')
-    */
-    // sys.spawn('Character', {
-    //     name: 'hero',
-    //     tiles: res.sprite,
-    //     x: 0,
-    //     y: 0,
-    //     w: 128,
-    //     h: 128,
-    //     startTilex: 0,
-    //     endTilex: 5,
-    //     framerate: 9,
-    // }, 'camera')
-    //
+
+    sys.spawn('mob/Zombie', {
+        name: 'zombie-1',
+        x: 5,
+        y: 5,
+    }, 'camera')
+
     sys.spawn('Grid', {
         color: '#ff7080',
         top: 1000,

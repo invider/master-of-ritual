@@ -4,15 +4,14 @@ let Character = function(st) {
     this.y = ctx.height/2
     this.dx = 0
     this.dy = 0
+    this.tilex = false
     this.startTilex = 0 // tilex is an index from tilemap
     this.endTilex = 0
+    this.tilexTime = 0
     this.framerate = 1
 
     sys.augment(this, st)
 
-    this.tilexTime = 0
-    this.tilex = this.startTilex
-    this.tilexPeriod = 1/this.framerate
 }
 
 Character.prototype.move = function(dt) {
@@ -21,11 +20,14 @@ Character.prototype.move = function(dt) {
 }
 
 Character.prototype.nextFrame = function(dt) {
+    if (!this.tilex) this.tilex = this.startTilex
+
     if (this.framerate > 0) {
         this.tilexTime += dt
-        if (this.tilexTime > this.tilexPeriod) {
-            this.tilexTime -= this.tilexPeriod
+        if (this.tilexTime > 1/this.framerate) {
+            this.tilexTime -= 1/this.framerate
             this.tilex ++
+
             if (this.tilex > this.endTilex) {
                 this.tilex = this.startTilex
             }
