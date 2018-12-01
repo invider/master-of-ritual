@@ -23,7 +23,7 @@ module.exports = function(e) {
         color: '#FF0000',
     }
     let t = lib.math.rndi(4)
-
+14
     switch(t) {
     // test default
     case 0: break;
@@ -97,5 +97,5 @@ module.exports = function(e) {
         break;
     }
 
-    sys.spawn('Emitter', dat, 'camera')
+    //sys.spawn('Emitter', dat, 'camera')
 }

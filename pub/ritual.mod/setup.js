@@ -5,6 +5,7 @@ module.exports = function() {
         name: 'camera',
         x: 0,
         y: 0,
+        scale: 32,
         keys: [],
     })
 
@@ -15,17 +16,20 @@ module.exports = function() {
         else if (this.keys[2]) this.x += (this.speed/this.scale) * dt
         else if (this.keys[3]) this.y += (this.speed/this.scale) * dt
     })
+    //
+    // sys.spawn('Tiles', {
+    //     x: 0,
+    //     y: 0,
+    //     map: res.tiles,
+    //     set: res.tileMapping,
+    //     viewport: function() {
+    //         return lab.camera.getViewport()
+    //     }
+    // }, 'camera')
 
-    sys.spawn('Tiles', {
-        x: 0,
-        y: 0,
-        map: res.tiles,
-        set: res.tileMapping,
-        viewport: function() {
-            return lab.camera.getViewport()
-        }
-    }, 'camera')
+    lib.levelLoader.loadFile(res.levels[1])
 
+    /*
     sys.spawn('mob/Master', {
         name: 'master',
         tiles: res.sprite,
@@ -37,21 +41,39 @@ module.exports = function() {
         endTilex: 16,
         framerate: 9,
     }, 'camera')
-
+    */
+    // sys.spawn('Character', {
+    //     name: 'hero',
+    //     tiles: res.sprite,
+    //     x: 0,
+    //     y: 0,
+    //     w: 128,
+    //     h: 128,
+    //     startTilex: 0,
+    //     endTilex: 5,
+    //     framerate: 9,
+    // }, 'camera')
+    //
     sys.spawn('Grid', {
         color: '#ff7080',
         top: 1000,
         step: 100,
-        coordinates: false,
+        x1: -10,
+        x1: 10,
+        y1: -10,
+        y2: 10,
+        step: 1,
+        coordinates: true,
+        font: '1px zekton'
     }, 'camera')
 
     sys.spawn('Grid', {
         color: '#505050',
         x1: 0,
-        x2: ctx.width + 100,
+        x2: ctx.width,
         y1: 0,
         y2: ctx.height,
-        step: ctx.width/7,
+        step: 100,
         style: 'target',
     })
 
@@ -66,7 +88,7 @@ module.exports = function() {
         fadeout: 5,
         speed: -25,
         txt: res.story,
-        font: '32px Zekton',
+        font: '14px Zekton',
         color: '#60FF20',
     })
 }
