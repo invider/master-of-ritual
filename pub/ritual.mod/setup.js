@@ -25,33 +25,17 @@ module.exports = function() {
         x: 0,
         y: 0,
     }, 'camera')
-<<<<<<< HEAD
 
     sys.spawn('mob/Zombie', {
         name: 'zombie-1',
         x: 5,
         y: 5,
     }, 'camera')
-=======
-    */
-    // sys.spawn('Character', {
-    //     name: 'hero',
-    //     tiles: res.sprite,
-    //     x: 0,
-    //     y: 0,
-    //     w: 128,
-    //     h: 128,
-    //     startTilex: 0,
-    //     endTilex: 5,
-    //     framerate: 9,
-    // }, 'camera')
-    //
 
     sys.spawn('playerInfo', {
        x: 10,
        y: 10
     });
->>>>>>> 839ee807063ff85c238cee5028cb007af3f74dec
 
     sys.spawn('Grid', {
         color: '#ff7080',
