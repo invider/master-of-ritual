@@ -16,6 +16,10 @@ let LevelLoader = {
     },
 
     loadFile: function(data){
+        if (!data || !sys.isString(data)) {
+            throw 'Unable to load level data: ' + data
+        }
+
         $.lib.levelParser.parse(data, (x, y, symbol, param) => {
             if (symbol == " ") {
                 return;
