@@ -36,11 +36,11 @@ module.exports = function() {
         y1: 0,
         y2: 10,
         step: 2,
-        w: 0.02,
-        h: 0.02,
-        th: 0.3,
+        w: 0.01,
+        h: 0.01,
+        th: 0.1,
         coordinates: true,
-        font: '0.3px zekton'
+        font: '0.1px zekton'
     }, 'camera')
 
     // camera view crosshair
@@ -50,7 +50,7 @@ module.exports = function() {
         x2: ctx.width,
         y1: 50,
         y2: ctx.height,
-        step: 100,
+        step: 150,
         style: 'target',
     })
 
