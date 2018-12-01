@@ -12,6 +12,6 @@ let Zombie = function(st) {
     this.framerate = 6;
 }
 
-sys.extend(Zombie, dna.Character);
+sys.extend(Zombie, dna.CharacterMob);
 
 module.exports = Zombie;
