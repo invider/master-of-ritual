@@ -33,6 +33,12 @@ let Character = function(st) {
     sys.augment(this, st)
 }
 
+Character.prototype.applyDamage = function(damage){
+    this.hp -= damage;
+    if (this.hp <= 0){
+        this.__.detach(this);
+    }
+};
 Character.prototype.tryToMove = function(dx, dy) {
     // calculate expected move coordinates
     if (dx === 0 && dy === 0) return 
