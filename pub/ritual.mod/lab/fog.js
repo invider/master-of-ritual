@@ -87,11 +87,10 @@ let fog = {
             intencity += WAVE * (1-glow/PERIOD)
         }
 
-        let sx = 0
-        let sy = 0
-        let w = ctx.width
-        let h = ctx.height
-
+        let w = Math.max(ctx.width, ctx.height)
+        let h = w
+        let sx = ctx.width/2 - w/2
+        let sy = ctx.height/2 - h/2
 
         ctx.imageSmoothingEnabled = true
         ctx.drawImage(fogTx[0], sx, sy, w, h)

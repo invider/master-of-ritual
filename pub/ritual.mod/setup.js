@@ -45,6 +45,7 @@ module.exports = function() {
     }, 'camera')
     */
 
+    /*
     // camera view crosshair
     sys.spawn('Grid', {
         color: '#505050',
@@ -55,6 +56,7 @@ module.exports = function() {
         step: 150,
         style: 'target',
     })
+    */
 
     // show the story
     sys.spawn('text/scroll', {
