@@ -19,6 +19,22 @@ let Sprite = function(st) {
     sys.augment(this, st)
 }
 
+Sprite.prototype.nextFrame = function(dt) {
+    if (!this.tilex) this.tilex = this.startTilex
+
+    if (this.framerate > 0) {
+        this.tilexTime += dt
+        if (this.tilexTime > 1/this.framerate) {
+            this.tilexTime -= 1/this.framerate
+            this.tilex ++
+
+            if (this.tilex > this.endTilex) {
+                this.tilex = this.startTilex
+            }
+        }
+    }
+};
+
 Sprite.prototype.draw = function() {
 
     ctx.save()
@@ -46,6 +62,10 @@ Sprite.prototype.draw = function() {
     }
 
     ctx.restore()
+}
+
+Sprite.prototype.evo = function(dt) {
+    this.nextFrame(dt)
 }
 
 module.exports = Sprite

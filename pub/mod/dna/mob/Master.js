@@ -54,8 +54,8 @@ Master.prototype.hit = function(source, dt) {
 
     if (source instanceof dna.Mob && !this.god){
         this.applyDamage(source.damage * dt);
+        lib.sfx(res.sfx.hit, 0.5)
     }
-    //lib.sfx(res.sfx.hit, 0.7)
 };
 Master.prototype.trySpell = function(spell){
     if (this._spellTimers[spell.type]){
