@@ -85,7 +85,5 @@ module.exports = function() {
         background: res.menu,
     });
 
-    lab.camera.target = lab.camera.master
-
-    env.debug = true
+    env.debug = false
 }

@@ -57,6 +57,8 @@ Master.prototype.trySpell = function(spell){
     if (this.mana > spell.mana){
         lib.objUtil.findObjInRadius(this, spell.dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(spell.dmg));
         this.mana -= spell.mana;
+    } else {
+        this.hint(res.msg.noMana, '#f03000')
     }
 };
 Master.prototype.evo = function(dt){

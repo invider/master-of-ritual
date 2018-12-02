@@ -33,8 +33,32 @@ let Character = function(st) {
     sys.augment(this, st)
 }
 
+Character.prototype.hint = function(msg, color, st) {
+    let opt = {
+        text: msg,
+        fillStyle: color,
+        x: lab.camera.screenX(this.x),
+        y: lab.camera.screenY(this.y - this.h/2),
+        font: '16px kenney-rocket-square',
+        align: 'center',
+        ttl: 2.5,
+        tti: 0.3,
+        ttf: 1,
+        dx: +20,
+        dy: -50,
+    }
+    if (st) sys.augment(opt, st)
+
+    sys.spawn('text/fadeText', opt)
+}
+
 Character.prototype.applyDamage = function(damage){
     this.hp -= damage;
+    this.hint('-' + damage, '#ff0000', {
+        dx: lib.math.rndi(30)-15,
+        dy: -30 - damage/2,
+    })
+    // TODO play sfx
 };
 Character.prototype.tryToMove = function(dx, dy) {
     // calculate expected move coordinates

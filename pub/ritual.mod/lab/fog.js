@@ -4,11 +4,11 @@ const MAX_ALPHA = 0.9
 
 const WAVE = 200
 
-const PERIOD = 1.5
+const PERIOD = 3
 
 const W = 640
-const R = 175
-const I = 1.7
+const R = 135
+const I = 1.5
 
 let glow = PERIOD
 
@@ -87,7 +87,7 @@ let fog = {
             intencity += WAVE * (1-glow/PERIOD)
         }
 
-        let w = Math.max(ctx.width, ctx.height)
+        let w = Math.max(ctx.width, ctx.height) + intencity
         let h = w
         let sx = ctx.width/2 - w/2
         let sy = ctx.height/2 - h/2
