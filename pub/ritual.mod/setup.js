@@ -58,14 +58,15 @@ module.exports = function() {
     sys.spawn('text/scroll', {
         Z: 100,
         rx: 50,
-        ry: 90,
-        period: 2.5,
+        ry: 100,
+        period: 1.5,
         time: 25,       // how long display each line
         fadein: 2.5,
         fadeout: 5,
         speed: -25,
-        txt: res.story,
-        font: '14px Zekton',
+        txt: res.txt.story,
+        align: 'center',
+        font: '14px kenney-rocket-square',
         color: '#60FF20',
     })
     // camera view crosshair
