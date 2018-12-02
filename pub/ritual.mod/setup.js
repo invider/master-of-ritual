@@ -29,6 +29,7 @@ module.exports = function() {
        y: 10
     });
 
+    /*
     sys.spawn('Grid', {
         color: '#ff7080',
         x1: 0,
@@ -42,6 +43,7 @@ module.exports = function() {
         coordinates: true,
         font: '0.1px zekton'
     }, 'camera')
+    */
 
     // camera view crosshair
     sys.spawn('Grid', {
