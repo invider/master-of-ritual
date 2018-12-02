@@ -4,7 +4,9 @@ var Menu = function(st) {
     this.itemW = 25;
     this.itemVertMargin = 15;
     this.itemSpacing = 23
-    this.textMargin = - 10
+    this.textMargin = - 10;
+    this.hoodWidth = 15;
+    this.hoodHeight = 90;
 };
 Menu.prototype.stacks = function(){
     let inventory = lab.camera.master.inventory;
@@ -45,6 +47,16 @@ Menu.prototype.draw = function() {
         item.item.tiles.draw(0, itemX, itemY, this.itemW, this.itemW );
         ctx.fillText(item.count, itemX + this.textMargin, itemY + this.textMargin)
     }
+
+    let hoodsY = this.y + 5;
+    let hpHoodX = this.x + 107;
+    let manaHoodX = this.x + 667;
+    ctx.fillStyle = "#F00";
+    ctx.fillRect(hpHoodX, hoodsY, this.hoodWidth, (this.hoodHeight / 100) * lab.camera.master.hp)
+
+
+    ctx.fillStyle = "#00F";
+    ctx.fillRect(manaHoodX, hoodsY, this.hoodWidth, (this.hoodHeight / 100) * lab.camera.master.mana )
 };
 
 module.exports = Menu;

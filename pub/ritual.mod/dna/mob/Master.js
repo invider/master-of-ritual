@@ -13,6 +13,7 @@ let Master = function(st) {
     this.ah = 0.95;
 
     this.hp = 100;
+    this.mana = 50;
     this.speed = 1;
     this.inventory = [];
     this.god = false
