@@ -40,7 +40,6 @@ Mob.prototype.evo = function(dt){
         this.tryToMove(
             this.calcDiff(master.x - this.x) * this.speed * dt,
             this.calcDiff(master.y - this.y) * this.speed * dt)
-
     }
 
 };
