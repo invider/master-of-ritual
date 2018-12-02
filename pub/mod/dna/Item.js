@@ -86,6 +86,7 @@ Item.prototype.hit = function(element){
     if (element instanceof dna.mob.Master){
         lab.camera.detach(this);
         element.inventory.push(this.itemType);
+        lib.sfx(res.sfx.pickup, 0.6)
     }
 };
 

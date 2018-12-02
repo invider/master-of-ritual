@@ -84,26 +84,13 @@ Character.prototype.move = function(dt) {
     this.tryToMove(this.dx*dt, this.dy*dt)
 }
 
-Character.prototype.nextFrame = function(dt) {
-    if (!this.tilex) this.tilex = this.startTilex
-
-    if (this.framerate > 0) {
-        this.tilexTime += dt
-        if (this.tilexTime > 1/this.framerate) {
-            this.tilexTime -= 1/this.framerate
-            this.tilex ++
-
-            if (this.tilex > this.endTilex) {
-                this.tilex = this.startTilex
-            }
-        }
-    }
-};
 Character.prototype.die = function(){
     this.__.detach(this);
 };
 
 Character.prototype.evo = function(dt) {
+    dna.Sprite.prototype.evo.call(this, dt)
+
     if (this.hp < 0){
         this.hp = 0;
         this.die();
@@ -113,11 +100,9 @@ Character.prototype.evo = function(dt) {
     }
     this.lastDxT -= dt
     this.move(dt)
-    this.nextFrame(dt)
 };
 
 Character.prototype.draw = function() {
-
     dna.Sprite.prototype.draw.call(this)
 
     ctx.save()
