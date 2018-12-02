@@ -18,6 +18,12 @@ let Character = function(st) {
     this.endTilex = 0
     this.tilexTime = 0
     this.framerate = 1
+    this.hoodWidth = 1;
+    this.hoodHeight = 0.02;
+    this.hpHoodY = 0.03;
+    this.hoodsX = 0;
+    this.manaHoodY = 0.07;
+
     sys.augment(this, st)
 }
 
@@ -93,6 +99,15 @@ Character.prototype.draw = function() {
             ctx.fillText(this.status, this.w/2, -0.05)
         }
     }
+    if (this.name == "master"){
+        debugger;
+    }
+    ctx.fillStyle = "#F00";
+    ctx.fillRect(this.hoodsX, this.hpHoodY, (this.hoodWidth / 100) * this.hp, this.hoodHeight);
+
+
+    ctx.fillStyle = "#00F";
+    ctx.fillRect(this.hoodsX, this.manaHoodY,  (this.hoodWidth / 100) * this.mana, this.hoodHeight);
 
     ctx.restore()
 }
