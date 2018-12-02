@@ -100,7 +100,6 @@ Character.prototype.draw = function() {
         }
     }
     if (this.name == "master"){
-        debugger;
     }
     if(this.showHoods){
         ctx.fillStyle = "#F00";

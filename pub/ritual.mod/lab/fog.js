@@ -2,9 +2,14 @@
 
 const MAX_ALPHA = 0.9
 
-const WAVE = 0.25
+const WAVE = 200
 
 const PERIOD = 1.5
+
+const W = 640
+const H = 480
+const R = 175
+const I = 1.7
 
 let glow = PERIOD
 
@@ -18,41 +23,40 @@ let fog = {
 
     color: '#100500',
 
-    R: 175,
-
-    I: 1.5,
-
     init: function() {
         log.out('generating fog...')
 
+        let w = W
+        let h = H
+
         // create new canvas
         let canvas = document.createElement('canvas');
-        canvas.width = ctx.width
-        canvas.height = ctx.height
+        canvas.width = w
+        canvas.height = h
         let fctx = canvas.getContext('2d');
 
-        let step = 5
-        let clearRadius = this.R
-        let maxRadius = Math.max(ctx.width, ctx.height)
+        let step = 1
+        let clearRadius = R
+        let maxRadius = Math.max(w, h)
 
-        let intencity = this.I
-        let alphaStep = MAX_ALPHA/((this.R*intencity-this.R)/step)
+        let intencity = I
+        let alphaStep = MAX_ALPHA/((R*intencity-R)/step)
 
         fctx.strokeStyle = this.color
-        fctx.lineWidth = 5
+        fctx.lineWidth = 1
 
-        let sx = ctx.width/2
-        let sy = ctx.height/2
+        let sx = w/2
+        let sy = h/2
 
         let alpha = 0
 
         let r = clearRadius
         while(r < maxRadius) {
 
-            ctx.globalAlpha = alpha
-            ctx.beginPath();
-            ctx.arc(sx, sy, r, 0, 2*Math.PI);
-            ctx.stroke();
+            fctx.globalAlpha = alpha
+            fctx.beginPath();
+            fctx.arc(sx, sy, r, 0, 2*Math.PI);
+            fctx.stroke();
 
             r += step
             if (alpha < MAX_ALPHA) alpha += alphaStep
@@ -81,15 +85,21 @@ let fog = {
 
         ctx.save()
 
-        let sx = ctx.width/2
-        let sy = ctx.height/2
-        let w = ctx.width/3
-        let h = ctx.height/3
+        let intencity = 0
+        if (glow < 0) {
+            intencity += -WAVE * glow/PERIOD
+        } else {
+            intencity += WAVE * (1-glow/PERIOD)
+        }
 
+        let sx = 0
+        let sy = 0
+        let w = ctx.width
+        let h = ctx.height
+
+
+        ctx.imageSmoothingEnabled = true
         ctx.drawImage(fogTx[0], sx, sy, w, h)
-        ctx.strokeStyle = '#ffff00'
-        ctx.lineWidth = 2
-        ctx.strokeRect(sx, sy, w, h)
 
         ctx.restore()
 
