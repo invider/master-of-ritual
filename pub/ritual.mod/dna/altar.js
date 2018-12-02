@@ -12,9 +12,34 @@ let Altar = function(dat) {
 sys.extend(Altar, dna.Character);
 
 Altar.prototype.hit = function(char) {
-    if (this.checkGoal() && dna.mob.Master && char instanceof dna.mob.Master){
-        lab.game.nextLevel();
+    if (dna.mob.Master && char instanceof dna.mob.Master){
+        if (this.checkGoal()) {
+            lab.game.nextLevel();
+        } else {
+            if (!lab['goal-text']) {
+
+                let goalsText = 'check your goals, stupid!'
+
+                // show the story
+                sys.spawn('text/scroll', {
+                    name: 'goal-text',
+                    Z: 100,
+                    rx: 50,
+                    ry: 100,
+                    period: 1.5,
+                    time: 10,       // how long display each line
+                    fadein: 2.5,
+                    fadeout: 4,
+                    speed: -20,
+                    txt: goalsText,
+                    align: 'center',
+                    font: '14px kenney-rocket-square',
+                    color: '#60FF20',
+                })
+            }
+        }
     }
+
 };
 
 Altar.prototype.countMasterItems = function(type){

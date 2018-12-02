@@ -197,7 +197,7 @@ Frame.prototype.detach = function(node) {
             }
         }
     } else {
-        if (node.name && this[name]) {
+        if (node.name && (this[node.name] || this._dir[node.name])) {
             this.detachByName(node.name);
         } else {
             let i = this._ls.indexOf(node);

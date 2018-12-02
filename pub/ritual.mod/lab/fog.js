@@ -8,17 +8,61 @@ const PERIOD = 1.5
 
 let glow = PERIOD
 
+let fogTx = []
+
 let fog = {
 
     Z: 11,
 
-    active: false,
+    active: true,
 
     color: '#100500',
 
     R: 175,
 
     I: 1.5,
+
+    init: function() {
+        log.out('generating fog...')
+
+        // create new canvas
+        let canvas = document.createElement('canvas');
+        canvas.width = ctx.width
+        canvas.height = ctx.height
+        let fctx = canvas.getContext('2d');
+
+        let step = 5
+        let clearRadius = this.R
+        let maxRadius = Math.max(ctx.width, ctx.height)
+
+        let intencity = this.I
+        let alphaStep = MAX_ALPHA/((this.R*intencity-this.R)/step)
+
+        fctx.strokeStyle = this.color
+        fctx.lineWidth = 5
+
+        let sx = ctx.width/2
+        let sy = ctx.height/2
+
+        let alpha = 0
+
+        let r = clearRadius
+        while(r < maxRadius) {
+
+            ctx.globalAlpha = alpha
+            ctx.beginPath();
+            ctx.arc(sx, sy, r, 0, 2*Math.PI);
+            ctx.stroke();
+
+            r += step
+            if (alpha < MAX_ALPHA) alpha += alphaStep
+        }
+
+        // store to image
+        var image = new Image();
+        image.src = canvas.toDataURL();
+        fogTx[0] = image
+    },
 
     evo: function(dt) {
         if (!this.active) return
@@ -35,6 +79,21 @@ let fog = {
     draw: function() {
         if (!this.active || !lab.camera.master) return
 
+        ctx.save()
+
+        let sx = ctx.width/2
+        let sy = ctx.height/2
+        let w = ctx.width/3
+        let h = ctx.height/3
+
+        ctx.drawImage(fogTx[0], sx, sy, w, h)
+        ctx.strokeStyle = '#ffff00'
+        ctx.lineWidth = 2
+        ctx.strokeRect(sx, sy, w, h)
+
+        ctx.restore()
+
+        /*
         ctx.save()
         //ctx.drawImage(res['smoke-particle'], ctx.width/2, ctx.height/2, 100, 100)
 
@@ -77,6 +136,7 @@ let fog = {
         }
 
         ctx.restore()
+        */
     },
 
 }
