@@ -6,6 +6,7 @@ let Item = function(st) {
             name: "bone",
             startTilex: 0,
             endTilex: 0,
+            ingredient: true,
             framerate: 1,
             tiles:res.items.bone
         },
@@ -13,6 +14,7 @@ let Item = function(st) {
             name: "eye",
             startTilex: 0,
             endTilex: 0,
+            ingredient: true,
             framerate: 1,
             tiles:res.items.eye
         },
@@ -20,6 +22,7 @@ let Item = function(st) {
             name: "health_potion",
             startTilex: 0,
             endTilex: 0,
+            ingredient: false,
             framerate: 1,
             tiles:res.items.health_potion
         },
@@ -27,6 +30,7 @@ let Item = function(st) {
             name: "wing",
             startTilex: 0,
             endTilex: 0,
+            ingredient: true,
             framerate: 1,
             tiles:res.items.wing
         },
@@ -35,6 +39,7 @@ let Item = function(st) {
             startTilex: 0,
             endTilex: 0,
             framerate: 1,
+            ingredient: true,
             tiles:res.items.blood
         },
 
