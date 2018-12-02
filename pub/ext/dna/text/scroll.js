@@ -18,7 +18,7 @@ module.exports = function(init) {
                 text: msg,
                 font: this.font,
                 fillStyle: this.color,
-                textAlign: this.align,
+                align: this.align,
                 ttl: this.time,
                 tti: this.fadein,
                 ttf: this.fadeout,

@@ -66,7 +66,7 @@ let LevelLoader = {
         // show the story
         params.settings.STORY && sys.spawn('text/scroll', {
             Z: 100,
-            rx: 50,
+            rx: 75,
             ry: 100,
             period: 1.5,
             time: 25,       // how long display each line
