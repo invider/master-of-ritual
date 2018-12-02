@@ -11,6 +11,15 @@ let Altar = function(dat) {
     this.showHoods = false;
 };
 sys.extend(Altar, dna.Character);
+Altar.prototype.getGoalsText = function(){
+    let res = ["You need to find:"]
+    for (let k in this.goals){
+        let goal = this.goals[k];
+        let name = goal.type;
+        res.push(`${name} X${goal.count}`)
+    }
+    return res.join("\n");
+};
 
 Altar.prototype.hit = function(char) {
     if (dna.mob.Master && char instanceof dna.mob.Master){
@@ -19,7 +28,7 @@ Altar.prototype.hit = function(char) {
         } else {
             if (!lab['goal-text']) {
 
-                let goalsText = 'check your goals, stupid!'
+                let goalsText = this.getGoalsText();
 
                 // show the story
                 sys.spawn('text/scroll', {
