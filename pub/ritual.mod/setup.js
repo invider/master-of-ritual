@@ -75,7 +75,7 @@ module.exports = function() {
         Z:99,
 
         x: ctx.width-800/2,
-        y: ctx.height - 120,
+        y: 20,
         w: 800,
         h: 100,
         background: res.menu,

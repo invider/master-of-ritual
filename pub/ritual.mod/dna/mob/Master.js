@@ -12,7 +12,8 @@ let Master = function(st) {
     this.aw = 0.67;
     this.ah = 0.95;
 
-    this.hp = 100;
+    this.hp = env.tuning.initialHP
+    this.mana = env.tuning.initialMana
     this.speed = 1;
     this.inventory = [];
     this.god = false

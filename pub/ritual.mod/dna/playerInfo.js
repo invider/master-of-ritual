@@ -9,15 +9,18 @@ var playerInfo = function() {
         txt: function(text1, text2){
             ctx.font = '24px kenney-rocket-square, impact, sans-serif';
 
-            ctx.fillStyle="#101010";
-            ctx.fillText(text1, 13, 38);
-            ctx.fillStyle="#F0B040";
-            ctx.fillText(text1, 10, 35);
+            let by = ctx.height - 45
 
             ctx.fillStyle="#101010";
-            ctx.fillText(text2, 13, 78);
+            ctx.fillText(text1, 13, by+3);
             ctx.fillStyle="#F0B040";
-            ctx.fillText(text2, 10, 70);
+            ctx.fillText(text1, 10, by);
+
+            by -= 30
+            ctx.fillStyle="#101010";
+            ctx.fillText(text2, 13, by+3);
+            ctx.fillStyle="#F0B040";
+            ctx.fillText(text2, 10, by);
         },
         addVar: function(opts){
             let v = opts.value === undefined ? this._.selectOne(opts.path): opts.value;
@@ -37,6 +40,10 @@ var playerInfo = function() {
 
             let txt = this.addVar({caption: "Level: ", value: lab.game.level });
             txt += this.addVar({caption: "    HP: ", value: Math.round(lab.camera.master.hp) });
+
+            txt += this.addVar({caption: "    Mana: ", value: Math.round(lab.camera.master.mana) });
+
+            // txt2 += this.addVar({caption: "Goal: ", value:  escaped + "/" + goal });
             // txt2 += this.addVar({caption: "Goal: ", value:  escaped + "/" + goal });
             // txt2 += this.addVar({caption: " Walking: ", value:  spawned - escaped - dead });
             //
