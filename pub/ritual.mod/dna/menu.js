@@ -1,9 +1,12 @@
 var Menu = function(st) {
     sys.augment(this, st)
-    this.itemMargin = 140;
+    this.itemMargin = 138;
     this.itemW = 25;
+    this.itemBgW = 46;
+    this.itemBgH = 46;
+    this.itemBgYMargin = 3;
     this.itemVertMargin = 15;
-    this.itemSpacing = 23
+    this.itemSpacing = 24
     this.textMargin = - 10;
     this.hoodWidth = 15;
     this.hoodHeight = 90;
@@ -44,7 +47,9 @@ Menu.prototype.draw = function() {
         let item = icons[i];
         let itemX = this.x + i * (this.itemW + this.itemSpacing) + this.itemMargin;
         let itemY = this.y + this.itemVertMargin;
+        res.items.background_icon.draw(0, itemX - 12, this.y + this.itemBgYMargin, this.itemBgW, this.itemBgH );
         item.item.tiles.draw(0, itemX, itemY, this.itemW, this.itemW );
+
         ctx.fillText(item.count, itemX + this.textMargin, itemY + this.textMargin)
     }
 
