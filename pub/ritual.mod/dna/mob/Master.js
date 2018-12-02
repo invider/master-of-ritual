@@ -63,14 +63,12 @@ Master.prototype.evo = function(dt){
     let dmgRadius = this.hitRadius;
 
     if (this.keys.spell1){
-        debugger;
         this.keys.spell1 = false;
         dmg = 10;
         this.mana -= 5;
         this.dmgRadius = 3
     }
     if (this.keys.spell2){
-        debugger;
         this.keys.spell2 = false;
         this.dmgRadius = 10
         dmg = 50;
