@@ -1,8 +1,8 @@
-var menu = function(st) {
+var Menu = function(st) {
     sys.augment(this, st)
 };
 
-menu.prototype.draw = function() {
+Menu.prototype.draw = function() {
     // fix position
     let w = this.w;
     if (w > ctx.width) w = ctx.width
@@ -10,7 +10,9 @@ menu.prototype.draw = function() {
     this.x = (ctx.width - w)/2;
 
     ctx.drawImage(this.background, this.x, this.y, w, this.h);
-    
+    for (var k in lab.master){
+
+    }
 };
 
-module.exports = menu;
+module.exports = Menu;
