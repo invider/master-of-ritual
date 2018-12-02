@@ -12,7 +12,7 @@ var objUtil = {
     distance: function(source, target){
         this.assertIsObj(source);
         this.assertIsObj(target);
-        return math.distance(source.x, source.y, target.x, target.y);
+        return lib.math.distance(source.x, source.y, target.x, target.y);
     },
     /**
      * returns vector obj1 -> obj2
