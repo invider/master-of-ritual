@@ -302,6 +302,9 @@ Frame.prototype.flatMap = function(fn) {
 }
 Frame.prototype.reduce = function(fn) {
 }
+Frame.prototype.selectInstance = function(of) {
+    return this.select(o => o instanceof of)
+};
 Frame.prototype.select = function(predicate) {
 	if (isString(predicate)) {
 		// select by path
@@ -498,8 +501,14 @@ let evalLoadedContent = function(script, _) {
                 + "\n /* path: " + script.path + "*/\n"
                 + script.src
             + '}).call(scope, __, __.ctx, module, __.sys, __.lib, __.res, __.dna, __.env, __.lab, __.mod, __.log, __.trap)'
+            let val;
+            try{
+                val = eval(code)
+            } catch (e) {
+                console.error(`Error executing file: ${script.path}`)
+                throw (e);
+            }
 
-            let val = eval(code)
 
             // apply definitions
             let declarationsFound = _.scan(scope)

@@ -67,7 +67,7 @@ var objUtil = {
         for (let k in source._ls){
             let o = source._ls[k];
             if (o === obj1 || o === obj2){
-                return;
+                continue;
             }
             if (predicate(obj1, obj2, o)){
                 result.push(o);
@@ -79,12 +79,13 @@ var objUtil = {
         return result;
     },
     rayTraceRadial: function(source, obj1, obj2, radius, stopOnFirst){
+        radius = radius === undefined ? 1 : radius;
         let predicate = function(o1, o2, o){
-            let rThreshold = 1;
             let len = lib.math.distanceToSegment(o.x, o.y, o1.x, o1.y, o2.x, o2.y);
-            return len <= rThreshold;
+            return len <= radius;
         };
-        return this.rayTrace(source, obj1, obj2, predicate, stopOnFirst);
+        let result = this.rayTrace(source, obj1, obj2, predicate, stopOnFirst);
+        return result
     }
 };
 
