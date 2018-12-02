@@ -74,6 +74,17 @@ Master.prototype.evo = function(dt){
 
     this.tryToMove(dx, dy)
     this.fixCamera()
+
+    // let elements = lab.camera.selectInstance(dna.Mob);
+    // debugger;
+    // elements.forEach(o => o.status = '')
+    // for (let k in elements){
+    //     let intersections = lib.objUtil.rayTraceRadial(lab.camera, this, elements[k]);
+    //     intersections.forEach(o => o.status = '123')
+    //     if (intersections.length === 0){
+    //         elements[k].status = "i see you";
+    //     }
+    // }
 };
 
 module.exports = Master;
