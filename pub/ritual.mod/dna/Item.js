@@ -9,15 +9,39 @@ let Item = function(st) {
             framerate: 1,
             tiles:res.bone
         },
+        eye: {
+            name: "eye",
+            startTilex: 0,
+            endTilex: 0,
+            framerate: 1,
+            tiles:res.eye
+        },
+        health_potion: {
+            name: "health_potion",
+            startTilex: 0,
+            endTilex: 0,
+            framerate: 1,
+            tiles:res.health_potion
+        },
+
     };
-    this.itemType = this._TYPES.bone;
+    this.itemType = st.itemType || this._TYPES.bone;
     this.applyType(this.itemType);
 };
 
 sys.extend(Item, dna.Character);
 
 Item.prototype.applyType = function(type){
+    if (typeof type === "string"){
+        for (var k in this._TYPES){
+            if (this._TYPES[k].name === type){
+                type = this._TYPES[k];
+                break;
+            }
+        }
+    }
     sys.augment(this, type);
+    this.itemType = type;
 };
 
 Item.prototype.hit = function(element){

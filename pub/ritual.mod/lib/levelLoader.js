@@ -7,6 +7,7 @@ var TYPEMAP = {
     'g': 'mob/Ghost',
     's': 'mob/Skeleton',
     'i': 'Item',
+    'h': {proto:"Item", params: {itemType: "health_potion"}},
     'A': 'altar'
 };
 
@@ -25,13 +26,22 @@ let LevelLoader = {
             if (symbol == " ") {
                 return;
             }
-            sys.spawn(TYPEMAP[symbol], {
+            let params = {
                 x: x,
                 y: y,
                 w: 1,
-                h: 1,
-                name: this.formatName(TYPEMAP[symbol])
-            }, "camera");
+                h: 1
+            };
+            let type = TYPEMAP[symbol];
+
+            if (typeof TYPEMAP[symbol] !== "string"){
+                type = TYPEMAP[symbol].proto;
+                sys.augment(params, TYPEMAP[symbol].params);
+                debugger;
+            }
+            params.name = params.name || this.formatName(type);
+            sys.spawn(type, params, "camera");
+
         })
     }
 };
