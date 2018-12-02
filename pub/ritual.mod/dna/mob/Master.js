@@ -88,6 +88,16 @@ Master.prototype.evo = function(dt){
     //         elements[k].status = "i see you";
     //     }
     // }
+    this.tiles = res.master;
+    if (this.keys.left){
+        this.tiles = res.master_left
+    }
+    if (this.keys.right){
+        this.tiles = res.master_right
+    }
+    if (this.keys.up){
+        this.tiles = res.master_back
+    }
 };
 
 module.exports = Master;
