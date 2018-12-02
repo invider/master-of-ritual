@@ -28,6 +28,10 @@ let Master = function(st) {
         spell2:false
     };
 
+    this._spellTimers = {
+
+    };
+
     this.tiles = res.master;
     this.startTilex = 0;
     this.endTilex = 4;
@@ -54,7 +58,10 @@ Master.prototype.hit = function(source, dt) {
     //lib.sfx(res.sfx.hit, 0.7)
 };
 Master.prototype.trySpell = function(spell){
-    if (this.mana > spell.mana){
+    if (this._spellTimers[spell.type]){
+        this.hint(res.msg.cooldown + this._spellTimers[spell.type].toString() + "s", '#f03000')
+    } else if (this.mana > spell.mana){
+        this._spellTimers[spell.type] = spell.cooldown;
         lib.objUtil.findObjInRadius(this, spell.dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(spell.dmg));
         this.mana -= spell.mana;
     } else {
@@ -62,17 +69,27 @@ Master.prototype.trySpell = function(spell){
     }
 };
 Master.prototype.evo = function(dt){
+    for (let k in this._spellTimers){
+        this._spellTimers[k] -= dt;
+        if (this._spellTimers[k] <=0){
+            delete this._spellTimers[k];
+        }
+    }
     dna.Character.prototype.evo.call(this, dt);
 
     this.keys.spell1 && this.trySpell({
+        type: "shadow",
         dmgRadius: 3,
         dmg:10,
-        mana: 5
+        mana: 5,
+        cooldown: 1
     });
     this.keys.spell2 && this.trySpell({
+        type: "fire",
         dmgRadius: 30,
         dmg: 40,
-        mana: 30
+        mana: 30,
+        cooldown:30
     });
     this.keys.spell1 = this.keys.spell2 = false;
 
