@@ -4,5 +4,7 @@ module.exports = function(e) {
         case 'ArrowUp': lab.camera.master.keys.up = false; break;
         case 'ArrowRight': lab.camera.master.keys.right = false; break;
         case 'ArrowDown': lab.camera.master.keys.down = false; break;
+        case '1': lab.camera.master.keys.spell1 = false; break;
+        case '2': lab.camera.master.keys.spell2 = false; break;
     }
 };

@@ -1,4 +1,6 @@
 let Character = function(st) {
+    this.hp = 100;
+    this.mana = 0;
     this.Z = 30
     this.alive = true
     this.solid = true // indicates, that we can't pass through the walls
@@ -16,7 +18,6 @@ let Character = function(st) {
     this.endTilex = 0
     this.tilexTime = 0
     this.framerate = 1
-
     sys.augment(this, st)
 }
 
