@@ -7,7 +7,6 @@ const WAVE = 200
 const PERIOD = 1.5
 
 const W = 640
-const H = 480
 const R = 175
 const I = 1.7
 
@@ -26,13 +25,10 @@ let fog = {
     init: function() {
         log.out('generating fog...')
 
-        let w = W
-        let h = H
-
         // create new canvas
         let canvas = document.createElement('canvas');
-        canvas.width = w
-        canvas.height = h
+        canvas.width = W
+        canvas.height = H
         let fctx = canvas.getContext('2d');
 
         let step = 1
