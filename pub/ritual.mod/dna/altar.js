@@ -8,6 +8,7 @@ let Altar = function(dat) {
     this.startTilex = 0;
     this.endTilex = 6;
     this.framerate = 6;
+    this.showHoods = false;
 };
 sys.extend(Altar, dna.Character);
 

@@ -7,6 +7,7 @@ let Mob = function(st) {
     this.lastX = 0;
     this.lastY = 0;
     this.distanceThreshold = 3;
+    this.showHoods = true;
 };
 
 sys.extend(Mob, dna.Character);

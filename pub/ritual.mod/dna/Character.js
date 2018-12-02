@@ -23,7 +23,7 @@ let Character = function(st) {
     this.hpHoodY = 0.03;
     this.hoodsX = 0;
     this.manaHoodY = 0.07;
-
+    this.showHoods = false;
     sys.augment(this, st)
 }
 
@@ -102,12 +102,15 @@ Character.prototype.draw = function() {
     if (this.name == "master"){
         debugger;
     }
-    ctx.fillStyle = "#F00";
-    ctx.fillRect(this.hoodsX, this.hpHoodY, (this.hoodWidth / 100) * this.hp, this.hoodHeight);
+    if(this.showHoods){
+        ctx.fillStyle = "#F00";
+        ctx.fillRect(this.hoodsX, this.hpHoodY, (this.hoodWidth / 100) * this.hp, this.hoodHeight);
 
 
-    ctx.fillStyle = "#00F";
-    ctx.fillRect(this.hoodsX, this.manaHoodY,  (this.hoodWidth / 100) * this.mana, this.hoodHeight);
+        ctx.fillStyle = "#00F";
+        ctx.fillRect(this.hoodsX, this.manaHoodY,  (this.hoodWidth / 100) * this.mana, this.hoodHeight);
+
+    }
 
     ctx.restore()
 }
