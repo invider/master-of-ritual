@@ -18,7 +18,6 @@ let Master = function(st) {
     this.showHoods = false;
     this.inventory = [];
     this.god = false;
-    this.hitRadius = 3;
 
     this.keys = {
         up:false,
@@ -43,38 +42,37 @@ Master.prototype.fixCamera = function() {
     lab.camera.x = this.x
     lab.camera.y = this.y
 };
+Master.prototype.die = function(){
+    lab.game.gameOwer();
+};
 
 Master.prototype.hit = function(source, dt) {
 
     if (source instanceof dna.Mob && !this.god){
         this.hp -= source.damage * dt;
-        if (this.hp < 0){
-            this.hp =0;
-            lab.game.gameOwer();
-        }
     }
     //lib.sfx(res.sfx.hit, 0.7)
 };
-
+Master.prototype.trySpell = function(spell){
+    if (this.mana > spell.mana){
+        lib.objUtil.findObjInRadius(this, spell.dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(spell.dmg));
+        this.mana -= spell.mana;
+    }
+};
 Master.prototype.evo = function(dt){
     dna.Character.prototype.evo.call(this, dt);
 
-    let dmg = 0;
-    let dmgRadius = this.hitRadius;
-
-    if (this.keys.spell1){
-        this.keys.spell1 = false;
-        dmg = 10;
-        this.mana -= 5;
-        this.dmgRadius = 3
-    }
-    if (this.keys.spell2){
-        this.keys.spell2 = false;
-        this.dmgRadius = 10
-        dmg = 50;
-        this.mana -= 30;
-    }
-    dmg && lib.objUtil.findObjInRadius(this, dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(dmg))
+    this.keys.spell1 && this.trySpell({
+        dmgRadius: 3,
+        dmg:10,
+        mana: 5
+    });
+    this.keys.spell2 && this.trySpell({
+        dmgRadius: 30,
+        dmg: 40,
+        mana: 30
+    });
+    this.keys.spell1 = this.keys.spell2 = false;
 
     let dx = 0
     let dy = 0

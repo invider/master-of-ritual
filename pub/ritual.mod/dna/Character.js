@@ -35,9 +35,6 @@ let Character = function(st) {
 
 Character.prototype.applyDamage = function(damage){
     this.hp -= damage;
-    if (this.hp <= 0){
-        this.__.detach(this);
-    }
 };
 Character.prototype.tryToMove = function(dx, dy) {
     // calculate expected move coordinates
@@ -78,7 +75,18 @@ Character.prototype.nextFrame = function(dt) {
         }
     }
 };
+Character.prototype.die = function(){
+    this.__.detach(this);
+};
+
 Character.prototype.evo = function(dt) {
+    if (this.hp < 0){
+        this.hp = 0;
+        this.die();
+    }
+    if (this.mana < 0){
+        this.mana = 0;
+    }
     this.lastDxT -= dt
     this.move(dt)
     this.nextFrame(dt)
