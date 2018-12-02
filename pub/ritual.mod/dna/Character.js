@@ -1,3 +1,5 @@
+const FLIP_TIME = 0.75
+
 let Character = function(st) {
     this.hp = 100;
     this.mana = 0;
@@ -13,6 +15,9 @@ let Character = function(st) {
     this.ah = 1
     this.dx = 0
     this.dy = 0
+    this.lastDx = 0
+    this.lastDxT = 0
+
     this.tilex = false
     this.startTilex = 0 // tilex is an index from tilemap
     this.endTilex = 0
@@ -37,6 +42,10 @@ Character.prototype.tryToMove = function(dx, dy) {
     // if not solid, otherwise not hitting the wall - make the actual move
     if (!this.solid || !lab.collider.testWall(this, nx, this.y)) {
         this.x = nx
+        if (this.lastDxT < 0) {
+            this.lastDx = dx
+            this.lastDxT = FLIP_TIME
+        }
     }
     if (!this.solid || !lab.collider.testWall(this, this.x, ny)) {
         this.y = ny
@@ -63,14 +72,17 @@ Character.prototype.nextFrame = function(dt) {
     }
 };
 Character.prototype.evo = function(dt) {
+    this.lastDxT -= dt
     this.move(dt)
     this.nextFrame(dt)
 };
 
 Character.prototype.draw = function() {
     ctx.save()
-    ctx.translate(this.x-this.w/2, this.y-this.h/2)
+    ctx.translate(this.x, this.y)
+    //ctx.translate(this.x-this.w/2, this.y-this.h/2)
 
+    // translate to center coordinates
     if (this.img) {
         ctx.drawImage(this.img, 0, 0, this.w, this.h)
     } else if (this.tiles) {
@@ -78,9 +90,18 @@ Character.prototype.draw = function() {
             ctx.drawImage(this.tiles[this.tilex],
                 0, 0, this.w, this.h)
         } else {
-            this.tiles.draw(this.tilex, 0, 0, this.w, this.h)
+            if (this.lastDx <= 0) {
+                this.tiles.draw(this.tilex, -this.w/2, -this.h/2, this.w, this.h)
+            } else {
+                var rad = 2 * Math.PI
+                ctx.scale(-1, 1);
+                this.tiles.draw(this.tilex, -this.w/2, -this.h/2, this.w, this.h)
+            }
         }
     }
+
+    // translate to corner coordinates
+    ctx.translate(-this.w/2, -this.h/2)
 
     if (env.debug) {
         // debug - draw border and active frames

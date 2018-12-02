@@ -75,6 +75,8 @@ Master.prototype.evo = function(dt){
     }
 
     this.tryToMove(dx, dy)
+    this.lastDx = 0 // fix dx, so there won't be automatic flip
+
     this.fixCamera()
     this.status = "Dungeton master:" + this.inventory.map(o => o.name).join(", ")
 
