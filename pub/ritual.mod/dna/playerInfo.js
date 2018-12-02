@@ -32,7 +32,7 @@ var playerInfo = function() {
         draw: function() {
             // let spawned = this._.selectOneNumber(constants.path.DUDES_SPAWNED_COUNT);
             // let dead = this._.selectOneNumber(constants.path.DUDES_DEAD);
-            // let goal = this._.selectOneNumber(constants.path.GOAL)
+            // let goals = this._.selectOneNumber(constants.path.GOAL)
             // let escaped = this._.selectOneNumber(constants.path.DUDES_ESCAPED)
             // let level = this._.selectOne(constants.path.PLAYER_LEVEL)
             // let levelName = this._.selectOne(constants.path.LEVEL_NAME)
@@ -43,8 +43,8 @@ var playerInfo = function() {
 
             txt += this.addVar({caption: "    Mana: ", value: Math.round(lab.camera.master.mana) });
 
-            // txt2 += this.addVar({caption: "Goal: ", value:  escaped + "/" + goal });
-            // txt2 += this.addVar({caption: "Goal: ", value:  escaped + "/" + goal });
+            // txt2 += this.addVar({caption: "Goal: ", value:  escaped + "/" + goals });
+            // txt2 += this.addVar({caption: "Goal: ", value:  escaped + "/" + goals });
             // txt2 += this.addVar({caption: " Walking: ", value:  spawned - escaped - dead });
             //
             this.txt(txt, "");
