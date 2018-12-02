@@ -9,6 +9,7 @@ let Character = function(st) {
     this.y = ctx.height/2
     this.w = 1
     this.h = 1
+    this.damage = 3;
     this.aw = 1
     this.ah = 1
     this.dx = 0

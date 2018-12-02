@@ -55,14 +55,23 @@ var objUtil = {
         return false;
     },
     /**
+     * returns list of object in given radius
+     * @param obj
+     * @param radius
+     * @returns {*[]}
+     */
+    findObjInRadius: function(obj, radius){
+        return obj.__._ls.filter(o => this.distance(this, o) <= radius);
+    },
+    /**
      *
-     * @param source - source object to search in
      * @param obj1
      * @param obj2
      * @param predicate function to check
      * @param stopOnFirst
      */
-    rayTrace: function(source, obj1, obj2, predicate, stopOnFirst){
+    rayTrace: function(obj1, obj2, predicate, stopOnFirst){
+        let source = obj.__
         let result = [];
         for (let k in source._ls){
             let o = source._ls[k];
@@ -78,13 +87,13 @@ var objUtil = {
         }
         return result;
     },
-    rayTraceRadial: function(source, obj1, obj2, radius, stopOnFirst){
+    rayTraceRadial: function(obj1, obj2, radius, stopOnFirst){
         radius = radius === undefined ? 1 : radius;
         let predicate = function(o1, o2, o){
             let len = lib.math.distanceToSegment(o.x, o.y, o1.x, o1.y, o2.x, o2.y);
             return len <= radius;
         };
-        let result = this.rayTrace(source, obj1, obj2, predicate, stopOnFirst);
+        let result = this.rayTrace(obj1, obj2, predicate, stopOnFirst);
         return result
     }
 };

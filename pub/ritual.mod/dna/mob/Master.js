@@ -17,7 +17,8 @@ let Master = function(st) {
     this.speed = 1;
     this.showHoods = false;
     this.inventory = [];
-    this.god = false
+    this.god = false;
+    this.hitRadius = 3;
 
     this.keys = {
         up:false,
@@ -52,7 +53,23 @@ Master.prototype.hit = function(source, dt) {
             lab.game.gameOwer();
         }
     }
-
+    let dmg = 0;
+    let dmgRadius = this.hitRadius;
+    if (this.keys.spell1){
+        debugger;
+        this.keys.spell1 = false;
+        dmg = 10;
+        this.mana -= 5;
+        this.dmgRadius = 3
+    }
+    if (this.keys.spell2){
+        debugger;
+        this.keys.spell2 = false;
+        this.dmgRadius = 10
+        dmg = 50;
+        this.mana -= 30;
+    }
+    dmg && lib.objUtil.findObjInRadius(this, dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(dmg))
     //lib.sfx(res.sfx.hit, 0.7)
 };
 
