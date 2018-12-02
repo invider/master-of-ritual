@@ -15,6 +15,7 @@ let Master = function(st) {
     this.hp = 100;
     this.speed = 1;
     this.inventory = [];
+    this.god = false
 
     this.keys = {
         up:false,
@@ -42,7 +43,7 @@ Master.prototype.fixCamera = function() {
 
 Master.prototype.hit = function(source, dt) {
 
-    if (source instanceof dna.Mob){
+    if (source instanceof dna.Mob && !this.god){
         this.hp -= source.damage * dt;
         if (this.hp < 0){
             this.hp =0;
@@ -73,7 +74,6 @@ Master.prototype.evo = function(dt){
 
     this.tryToMove(dx, dy)
     this.fixCamera()
-    
 };
 
 module.exports = Master;

@@ -1,5 +1,6 @@
 module.exports = {
     _info: 'system functions',
+
     cp: function(source, target) {
         _.log.sys('copying ' + source + ' -> ' + target)
 

@@ -3,7 +3,23 @@
 let keyBuffer = ''
 const MAX_BUFFER = 16
 
-var game = {
+let match = function(cmd) {
+    return keyBuffer.endsWith(cmd)
+}
+
+let cheatCode = {
+    'debug': function() {
+        env.debug = !env.debug
+    },
+    'ether': function() {
+        lab.camera.master.solid = !lab.camera.master.solid
+    },
+    'master': function() {
+        lab.camera.master.god = !lab.camera.master.god
+    },
+}
+
+let game = {
 
     level: 0,
 
@@ -32,11 +48,24 @@ var game = {
     },
 
     keyUp: function(key) {
+        if (!key || key.length > 1) return
+
         keyBuffer += key
-        if (keyBufer.length > MAX_BUFFER) {
+        if (keyBuffer.length > MAX_BUFFER) {
             keyBuffer = keyBuffer.substring(
                 keyBuffer.length-MAX_BUFFER, keyBuffer.length)
         }
+
+        this.tryToCheat()
+    },
+
+    tryToCheat: function() {
+        Object.getOwnPropertyNames(cheatCode).forEach(code => {
+            if (match(code)) {
+                log.out('cheat: [' + code + ']')
+                cheatCode[code]()
+            }
+        })
     },
 
 };

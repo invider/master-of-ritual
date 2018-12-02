@@ -61,6 +61,8 @@ Grid.prototype.mark = function(x, y) {
 }
 
 Grid.prototype.draw = function() {
+    if (!env.debug) return
+
     ctx.fillStyle = this.color
     ctx.strokeStyle = this.color
 
