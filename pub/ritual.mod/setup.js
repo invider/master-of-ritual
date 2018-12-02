@@ -69,12 +69,16 @@ module.exports = function() {
         font: '14px kenney-rocket-square',
         color: '#60FF20',
     })
-    // camera view crosshair
+
+    // create the menu
     sys.spawn('menu', {
-        x:10,
-        y:10,
-        w:800,
-        h:100
+        Z:99,
+
+        x: ctx.width-800/2,
+        y: ctx.height - 120,
+        w: 800,
+        h: 100,
+        background: res.menu,
     });
 
     lab.camera.target = lab.camera.master
