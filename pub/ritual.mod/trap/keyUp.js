@@ -7,4 +7,5 @@ module.exports = function(e) {
         case '1': lab.camera.master.keys.spell1 = false; break;
         case '2': lab.camera.master.keys.spell2 = false; break;
     }
+    if (e.key.length === 1) lab.game.keyUp(e.key)
 };
