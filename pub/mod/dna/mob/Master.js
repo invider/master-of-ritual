@@ -59,7 +59,7 @@ Master.prototype.hit = function(source, dt) {
 };
 Master.prototype.trySpell = function(spell){
     if (this._spellTimers[spell.type]){
-        this.hint(res.msg.cooldown + this._spellTimers[spell.type].toString() + "s", '#f03000')
+        this.hint(res.msg.cooldown + Math.round(this._spellTimers[spell.type]).toString(), '#f03000')
     } else if (this.mana > spell.mana){
         this._spellTimers[spell.type] = spell.cooldown;
         lib.objUtil.findObjInRadius(this, spell.dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(spell.dmg));
