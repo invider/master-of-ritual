@@ -39,7 +39,7 @@ Character.prototype.hint = function(msg, color, st) {
         fillStyle: color,
         x: lab.camera.screenX(this.x),
         y: lab.camera.screenY(this.y - this.h/2),
-        font: '16px kenney-rocket-square',
+        font: '24px ' + env.tuning.labelFont,
         align: 'center',
         ttl: 2.5,
         tti: 0.3,

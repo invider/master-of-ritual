@@ -62,6 +62,7 @@ let LevelLoader = {
             params.name = params.name || this.formatName(type);
             sys.spawn(type, params, "camera");
         })
+
         // show the story
         params.settings.STORY && sys.spawn('text/scroll', {
             Z: 100,
@@ -74,7 +75,7 @@ let LevelLoader = {
             speed: -25,
             txt: res.txt[params.settings.STORY],
             align: 'center',
-            font: '14px kenney-rocket-square',
+            font: '24px ' + env.tuning.textFont,
             color: '#60FF20',
         })
         if (!params.settings.FINAL){

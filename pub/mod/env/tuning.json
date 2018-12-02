@@ -1,4 +1,6 @@
 {
+    "textFont": "jim-nightshade",
+    "labelFont": "jim-nightshade",
     "initialHP": 100,
     "initialMana": 100
 }

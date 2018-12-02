@@ -58,8 +58,6 @@ module.exports = function() {
     })
     */
 
-
-
     // create the menu
     sys.spawn('menu', {
         Z:99,

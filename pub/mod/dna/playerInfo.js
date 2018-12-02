@@ -7,10 +7,11 @@ var playerInfo = function() {
 
         },
         txt: function(text1, text2){
-            ctx.font = '24px kenney-rocket-square, impact, sans-serif';
+            ctx.font = '24px baldur';
 
             let by = ctx.height - 45
 
+            ctx.textAlign = 'left'
             ctx.fillStyle="#101010";
             ctx.fillText(text1, 13, by+3);
             ctx.fillStyle="#F0B040";
