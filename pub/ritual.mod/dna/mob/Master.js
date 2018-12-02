@@ -49,7 +49,7 @@ Master.prototype.die = function(){
 Master.prototype.hit = function(source, dt) {
 
     if (source instanceof dna.Mob && !this.god){
-        this.hp -= source.damage * dt;
+        this.applyDamage(source.damage * dt);
     }
     //lib.sfx(res.sfx.hit, 0.7)
 };
