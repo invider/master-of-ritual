@@ -1,23 +1,16 @@
 var menu = function(st) {
+    sys.augment(this, st)
+};
 
-    let res = new sys.Frame({
-        name: 'menu',
+menu.prototype.draw = function() {
+    // fix position
+    let w = this.w;
+    if (w > ctx.width) w = ctx.width
 
-        evo: function(scene, dt) {}, 
+    this.x = (ctx.width - w)/2;
 
-        draw: function() {
-            // fix position
-            let w = this.w
-            if (w > ctx.width) w = ctx.width
-
-            this.x = (ctx.width - w)/2
-
-            ctx.drawImage(this.background, this.x, this.y, w, this.h)
-        }
-    })
-
-    sys.augment(res, st)
-    return res
+    ctx.drawImage(this.background, this.x, this.y, w, this.h);
+    
 };
 
 module.exports = menu;
