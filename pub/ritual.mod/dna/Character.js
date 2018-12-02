@@ -82,6 +82,15 @@ Character.prototype.draw = function() {
         ctx.strokeRect(0, 0, this.w, this.h)
         ctx.strokeStyle = '#ff0000'
         ctx.strokeRect((this.w-this.aw)/2, (this.h-this.ah)/2, this.aw, this.ah)
+
+        if (this.status) {
+            ctx.fillStyle = '#80F000'
+            ctx.font = '0.1px kenney-rocket-square'
+            ctx.textAlign = 'center'
+            ctx.textBaseline = 'bottom'
+
+            ctx.fillText(this.status, this.w/2, -0.05)
+        }
     }
 
     ctx.restore()

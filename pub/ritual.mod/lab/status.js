@@ -5,7 +5,7 @@ module.exports = {
         ctx.fillStyle = '#80F000'
         ctx.textAlign = 'left'
         ctx.textBaseline = 'bottom'
-        ctx.font = '18px zekton'
+        ctx.font = '18px kenney-rocket-square'
 
         let text = env.status
         if (!text) text = 'status'

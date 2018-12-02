@@ -3,6 +3,7 @@ module.exports = function(init) {
     let res = {
         timer: 0,
         line: 0,
+        align: 'center',
 
         init: function() {
             if (!this.txt) this.txt = 'text is missing'
@@ -16,7 +17,7 @@ module.exports = function(init) {
                 text: msg,
                 font: this.font,
                 fillStyle: this.color,
-                textAlign: 'center',
+                textAlign: this.align,
                 ttl: this.time,
                 tti: this.fadein,
                 ttf: this.fadeout,

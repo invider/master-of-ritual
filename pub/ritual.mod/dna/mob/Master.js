@@ -27,6 +27,8 @@ let Master = function(st) {
     this.startTilex = 0;
     this.endTilex = 4;
     this.framerate = 5;
+
+    this.status = "dungeon master!"
 };
 
 sys.extend(Master, dna.Character);
