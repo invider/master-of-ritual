@@ -6,6 +6,7 @@ let Mob = function(st) {
     this.damage = 3;
     this.lastX = 0;
     this.lastY = 0;
+    this.distanceThreshold = 3;
 };
 
 sys.extend(Mob, dna.Character);
@@ -33,7 +34,7 @@ Mob.prototype.evo = function(dt){
     //this.lastX = this.x;
     //this.lastY = this.y;
     let master = lab.camera.master;
-    if (master) {
+    if (master && lib.objUtil.distance(this, master) <= this.distanceThreshold) {
         // try to move towards master
         this.tryToMove(
             this.calcDiff(master.x - this.x) * this.speed * dt,
