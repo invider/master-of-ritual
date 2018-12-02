@@ -1,5 +1,7 @@
 'use strict'
 
+// @depends(dna/Character)
+
 let Mob = function(st) {
     dna.Character.call(this, st);
     this.speed = 0.5;

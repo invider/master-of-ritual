@@ -1,37 +1,37 @@
+'use strict'
+
 const FLIP_TIME = 0.75
 
+// @depends(dna/Sprite)
+
 let Character = function(st) {
+    dna.Sprite.call(this, st);
+    this.Z = 30
+
     this.hp = 100;
     this.mana = 0;
-    this.Z = 30
+
     this.alive = true
     this.solid = true // indicates, that we can't pass through the walls
     this.collidable = true // indicates if we can hit other mobs
-    this.x = ctx.width/2
-    this.y = ctx.height/2
-    this.w = 1
-    this.h = 1
     this.damage = 3;
-    this.aw = 1
-    this.ah = 1
+
     this.dx = 0
     this.dy = 0
     this.lastDx = 0
     this.lastDxT = 0
 
-    this.tilex = false
-    this.startTilex = 0 // tilex is an index from tilemap
-    this.endTilex = 0
-    this.tilexTime = 0
-    this.framerate = 1
     this.hoodWidth = 1;
     this.hoodHeight = 0.02;
     this.hpHoodY = 0.03;
     this.hoodsX = 0;
     this.manaHoodY = 0.07;
     this.showHoods = false;
+
     sys.augment(this, st)
 }
+
+sys.extend(Character, dna.Sprite);
 
 Character.prototype.hint = function(msg, color, st) {
     let opt = {
@@ -117,33 +117,12 @@ Character.prototype.evo = function(dt) {
 };
 
 Character.prototype.draw = function() {
+
+    dna.Sprite.prototype.draw.call(this)
+
     ctx.save()
-    ctx.translate(this.x, this.y)
-    //ctx.translate(this.x-this.w/2, this.y-this.h/2)
-
-    // translate to center coordinates
-    if (this.img) {
-        ctx.drawImage(this.img, 0, 0, this.w, this.h)
-    } else if (this.tiles) {
-        if (sys.isArray(this.tiles)) {
-            ctx.drawImage(this.tiles[this.tilex],
-                0, 0, this.w, this.h)
-        } else {
-            if (this.lastDx <= 0) {
-                this.tiles.draw(this.tilex, -this.w/2, -this.h/2, this.w, this.h)
-            } else {
-                // flip
-                ctx.save()
-                var rad = 2 * Math.PI
-                ctx.scale(-1, 1);
-                this.tiles.draw(this.tilex, -this.w/2, -this.h/2, this.w, this.h)
-                ctx.restore()
-            }
-        }
-    }
-
     // translate to corner coordinates
-    ctx.translate(-this.w/2, -this.h/2)
+    ctx.translate(this.x-this.w/2, this.y-this.h/2)
 
     if (env.debug) {
         // debug - draw border and active frames
