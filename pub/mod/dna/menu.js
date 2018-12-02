@@ -13,6 +13,9 @@ var Menu = function(st) {
     this.hoodHeight = 90;
 };
 Menu.prototype.stacks = function(){
+    if(!lab.camera.master){
+        return [];
+    }
     let inventory = lab.camera.master.inventory;
     let types = {};
     for (var i=0;i<inventory.length; i++){
@@ -38,6 +41,9 @@ Menu.prototype.drawIcon = function(itemX, itemY, tiles){
     tiles.draw(0, itemX, itemY, this.itemW, this.itemW );
 };
 Menu.prototype.draw = function() {
+    if(!lab.camera.master){
+        return ;
+    }
     // fix position
     let w = this.w;
     if (w > ctx.width) w = ctx.width

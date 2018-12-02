@@ -30,6 +30,9 @@ var playerInfo = function() {
             return opts.caption + v + " ";
         },
         draw: function() {
+            if (!lab.camera.master){
+                return;
+            }
             // let spawned = this._.selectOneNumber(constants.path.DUDES_SPAWNED_COUNT);
             // let dead = this._.selectOneNumber(constants.path.DUDES_DEAD);
             // let goals = this._.selectOneNumber(constants.path.GOAL)

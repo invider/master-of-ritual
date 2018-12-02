@@ -1,4 +1,5 @@
 FINAL=1
+STORY=story_game_over
 ^^^SETTINGS^^^
 **********************************
 *                                *
