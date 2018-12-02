@@ -25,7 +25,9 @@ let Master = function(st) {
         down:false,
         left:false,
         spell1:false,
-        spell2:false
+        spell2:false,
+        manapot:false,
+        healingpot:false
     };
 
     this._spellTimers = {
@@ -57,6 +59,13 @@ Master.prototype.hit = function(source, dt) {
     }
     //lib.sfx(res.sfx.hit, 0.7)
 };
+
+Master.prototype.tryPot = function(type){
+    if (this.countItems(type) > 0){
+        this.useItem(type);
+    }
+};
+
 Master.prototype.trySpell = function(spell){
     if (this._spellTimers[spell.type]){
         this.hint(res.msg.cooldown + Math.round(this._spellTimers[spell.type]).toString(), '#f03000')
@@ -68,6 +77,33 @@ Master.prototype.trySpell = function(spell){
         this.hint(res.msg.noMana, '#f03000')
     }
 };
+Master.prototype.countItems = function(type){
+    let count = 0;
+    for (let k in this.inventory){
+        let item = this.inventory[k];
+        if (item.name === type){
+            count ++;
+        }
+    }
+    return count;
+};
+Master.prototype.useItem = function(type){
+    for (let k in this.inventory) {
+        let item = this.inventory[k];
+        if (item.name === type) {
+            this.inventory.splice(k, 1);
+            item.use();
+            return;
+        }
+    }
+};
+Master.prototype.setHp = function(hp){
+    this.hp = Math.max(hp, 100);
+};
+Master.prototype.setMana = function(mana){
+    this.mana = Math.max(mana, 100);
+};
+
 Master.prototype.evo = function(dt){
     for (let k in this._spellTimers){
         this._spellTimers[k] -= dt;
@@ -76,7 +112,8 @@ Master.prototype.evo = function(dt){
         }
     }
     dna.Character.prototype.evo.call(this, dt);
-
+    this.keys.healingpot && this.tryPot("health_potion");
+    this.keys.manapot && this.tryPot("mana_potion");
     this.keys.spell1 && this.trySpell({
         type: "shadow",
         dmgRadius: 3,
@@ -91,7 +128,7 @@ Master.prototype.evo = function(dt){
         mana: 30,
         cooldown:30
     });
-    this.keys.spell1 = this.keys.spell2 = false;
+    this.keys.spell1 = this.keys.spell2 = this.keys.healingpot = this.keys.manapot = false;
 
     let dx = 0
     let dy = 0

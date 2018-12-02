@@ -24,7 +24,21 @@ let Item = function(st) {
             endTilex: 0,
             ingredient: false,
             framerate: 1,
-            tiles:res.items.health_potion
+            tiles:res.items.health_potion,
+            use: function(){
+                lab.camera.master.setHp(lab.camera.master.hp + 50)
+            }
+        },
+        mana_potion: {
+            name: "mana_potion",
+            startTilex: 0,
+            endTilex: 0,
+            ingredient: false,
+            framerate: 1,
+            tiles:res.items.mana_potion,
+            use: function(){
+                lab.camera.master.setMana(lab.camera.master.mana + 50)
+            }
         },
         wig: {
             name: "wing",
@@ -49,6 +63,11 @@ let Item = function(st) {
 };
 
 sys.extend(Item, dna.Character);
+
+Item.prototype.use = function(){
+    this.itemType.use && this.itemType.use()
+};
+
 
 Item.prototype.applyType = function(type){
     if (typeof type === "string"){

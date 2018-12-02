@@ -52,20 +52,10 @@ Altar.prototype.hit = function(char) {
 
 };
 
-Altar.prototype.countMasterItems = function(type){
-    let count = 0;
-    for (let k in lab.camera.master.inventory){
-        let item = lab.camera.master.inventory[k];
-        if (item.name === type){
-            count ++;
-        }
-    }
-    return count;
-};
 Altar.prototype.checkGoal = function () {
     for (let k in this.goals){
         let goal = this.goals[k];
-        if (this.countMasterItems(goal.type) < goal.count){
+        if (lab.camera.master.countItems(goal.type) < goal.count){
             return false;
         }
     }

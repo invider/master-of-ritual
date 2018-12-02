@@ -8,6 +8,7 @@ var TYPEMAP = {
     's': 'mob/Skeleton',
     'i': 'Item',
     'H': {proto:"Item", params: {itemType: "health_potion"}},
+    'M': {proto:"Item", params: {itemType: "mana_potion"}},
     'W': {proto:"Item", params: {itemType: "wing"}},
     'B': {proto:"Item", params: {itemType: "blood"}},
     'E': {proto:"Item", params: {itemType: "eye"}},
