@@ -77,4 +77,6 @@ module.exports = function() {
     });
 
     lab.camera.target = lab.camera.master
+
+    env.debug = true
 }

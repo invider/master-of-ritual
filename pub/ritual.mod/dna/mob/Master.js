@@ -4,9 +4,14 @@
 
 let Master = function(st) {
     dna.Character.call(this, st)
+    this.Z = 40
 
     this.w = 1;
     this.h = 1;
+    // active (collidable) width and height
+    this.aw = 0.67;
+    this.ah = 0.95;
+
     this.hp = 100;
     this.speed = 1;
     this.inventory = [];
@@ -47,19 +52,22 @@ Master.prototype.hit = function(source, dt) {
 Master.prototype.evo = function(dt){
     dna.Character.prototype.evo.call(this, dt);
 
-
+    let dx = 0
+    let dy = 0
     if (this.keys.left){
-        this.x -= dt * this.speed;
+        dx = -dt * this.speed;
     }
     if (this.keys.right){
-        this.x += dt * this.speed;
+        dx = dt * this.speed;
     }
     if (this.keys.down){
-        this.y += dt * this.speed;
+        dy = dt * this.speed;
     }
     if (this.keys.up){
-        this.y -= dt * this.speed;
+        dy = -dt * this.speed;
     }
+
+    this.tryToMove(dx, dy)
     this.fixCamera()
 
 };

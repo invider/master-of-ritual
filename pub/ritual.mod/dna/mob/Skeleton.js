@@ -2,9 +2,12 @@
 
 let Ghost = function(st) {
     dna.Mob.call(this, st)
+    this.Z = 30
 
     this.w = 1
     this.h = 1
+    this.aw = 0.4
+    this.ah = 0.8
 
     this.tiles = res.skeleton
     this.startTilex = 0

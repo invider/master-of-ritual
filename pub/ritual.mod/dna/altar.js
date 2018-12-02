@@ -1,6 +1,7 @@
 //  @depends(dna/Character)
 let Altar = function(dat) {
     dna.Character.call(this, dat);
+    this.Z = 20;
     this.active = true;
     this.collidable = true;
 

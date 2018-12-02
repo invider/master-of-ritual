@@ -1,4 +1,8 @@
 let LevelWall = function(dat) {
+    this.Z = 20
+    this.aw = 1
+    this.ah = 1
+
     sys.augment(this, dat)
 };
 

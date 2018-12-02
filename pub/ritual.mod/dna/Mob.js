@@ -20,20 +20,25 @@ Mob.prototype.calcDiff = function(diff){
 };
 
 Mob.prototype.hit = function(el, dt){
+    /*
     if (el instanceof dna.levelWall){
         this.x = this.lastX;
         this.y = this.lastY;
     }
+    */
 };
 
 Mob.prototype.evo = function(dt){
     dna.Character.prototype.evo.call(this, dt);
-    this.lastX = this.x;
-    this.lastY = this.y;
+    //this.lastX = this.x;
+    //this.lastY = this.y;
     let master = lab.camera.master;
     if (master) {
-        this.x += this.calcDiff(master.x - this.x) * this.speed * dt;
-        this.y += this.calcDiff(master.y - this.y) * this.speed * dt;
+        // try to move towards master
+        this.tryToMove(
+            this.calcDiff(master.x - this.x) * this.speed * dt,
+            this.calcDiff(master.y - this.y) * this.speed * dt)
+
     }
 
 };
