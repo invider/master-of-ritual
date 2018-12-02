@@ -7,21 +7,35 @@ let Item = function(st) {
             startTilex: 0,
             endTilex: 0,
             framerate: 1,
-            tiles:res.bone
+            tiles:res.items.bone
         },
         eye: {
             name: "eye",
             startTilex: 0,
             endTilex: 0,
             framerate: 1,
-            tiles:res.eye
+            tiles:res.items.eye
         },
         health_potion: {
             name: "health_potion",
             startTilex: 0,
             endTilex: 0,
             framerate: 1,
-            tiles:res.health_potion
+            tiles:res.items.health_potion
+        },
+        wig: {
+            name: "wing",
+            startTilex: 0,
+            endTilex: 0,
+            framerate: 1,
+            tiles:res.items.wing
+        },
+        blood: {
+            name: "blood",
+            startTilex: 0,
+            endTilex: 0,
+            framerate: 1,
+            tiles:res.items.blood
         },
 
     };
