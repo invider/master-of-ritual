@@ -28,12 +28,11 @@ let fog = {
         // create new canvas
         let canvas = document.createElement('canvas');
         canvas.width = W
-        canvas.height = H
+        canvas.height = W
         let fctx = canvas.getContext('2d');
 
         let step = 1
         let clearRadius = R
-        let maxRadius = Math.max(w, h)
 
         let intencity = I
         let alphaStep = MAX_ALPHA/((R*intencity-R)/step)
@@ -41,13 +40,13 @@ let fog = {
         fctx.strokeStyle = this.color
         fctx.lineWidth = 1
 
-        let sx = w/2
-        let sy = h/2
+        let sx = W/2
+        let sy = W/2
 
         let alpha = 0
 
         let r = clearRadius
-        while(r < maxRadius) {
+        while(r < W) {
 
             fctx.globalAlpha = alpha
             fctx.beginPath();
