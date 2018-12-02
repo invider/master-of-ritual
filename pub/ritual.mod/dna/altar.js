@@ -12,7 +12,7 @@ let Altar = function(dat) {
 };
 sys.extend(Altar, dna.Character);
 Altar.prototype.getGoalsText = function(){
-    let res = ["You need to find:"]
+    let res = ["You need to sacrifice:"]
     for (let k in this.goals){
         let goal = this.goals[k];
         let name = goal.type;
