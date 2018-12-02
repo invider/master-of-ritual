@@ -74,6 +74,7 @@ Master.prototype.evo = function(dt){
 
     this.tryToMove(dx, dy)
     this.fixCamera()
+    this.status = "Dungeton master:" + this.inventory.map(o => o.name).join(", ")
 
     // let elements = lab.camera.selectInstance(dna.Mob);
     // debugger;

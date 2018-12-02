@@ -20,4 +20,11 @@ Item.prototype.applyType = function(type){
     sys.augment(this, type);
 };
 
+Item.prototype.hit = function(element){
+    if (element instanceof dna.mob.Master){
+        lab.camera.detach(this);
+        element.inventory.push(this.itemType);
+    }
+
+};
 module.exports = Item;
