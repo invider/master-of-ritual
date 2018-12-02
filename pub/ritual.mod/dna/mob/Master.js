@@ -53,8 +53,15 @@ Master.prototype.hit = function(source, dt) {
             lab.game.gameOwer();
         }
     }
+    //lib.sfx(res.sfx.hit, 0.7)
+};
+
+Master.prototype.evo = function(dt){
+    dna.Character.prototype.evo.call(this, dt);
+
     let dmg = 0;
     let dmgRadius = this.hitRadius;
+
     if (this.keys.spell1){
         debugger;
         this.keys.spell1 = false;
@@ -70,11 +77,6 @@ Master.prototype.hit = function(source, dt) {
         this.mana -= 30;
     }
     dmg && lib.objUtil.findObjInRadius(this, dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(dmg))
-    //lib.sfx(res.sfx.hit, 0.7)
-};
-
-Master.prototype.evo = function(dt){
-    dna.Character.prototype.evo.call(this, dt);
 
     let dx = 0
     let dy = 0
