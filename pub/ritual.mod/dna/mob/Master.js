@@ -20,7 +20,9 @@ let Master = function(st) {
         up:false,
         right:false,
         down:false,
-        left:false
+        left:false,
+        spell1:false,
+        spell2:false
     };
 
     this.tiles = res.master;
@@ -34,7 +36,7 @@ sys.extend(Master, dna.Character);
 Master.prototype.fixCamera = function() {
     lab.camera.x = this.x
     lab.camera.y = this.y
-}
+};
 
 Master.prototype.hit = function(source, dt) {
 
@@ -47,7 +49,7 @@ Master.prototype.hit = function(source, dt) {
     }
 
     //lib.sfx(res.sfx.hit, 0.7)
-}
+};
 
 Master.prototype.evo = function(dt){
     dna.Character.prototype.evo.call(this, dt);
@@ -69,7 +71,7 @@ Master.prototype.evo = function(dt){
 
     this.tryToMove(dx, dy)
     this.fixCamera()
-
+    
 };
 
 module.exports = Master;

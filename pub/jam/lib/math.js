@@ -26,32 +26,54 @@ return {
         if (len === 0) return [0, 0];
         return [x/len, y/len]
     },
-
+    /**
+     * returns distance between 2 dots
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @returns {number}
+     */
     distance: function(x1, y1, x2, y2) {
-        var dx = x2 - x1
-        var dy = y2 - y1
+        var dx = x2 - x1;
+        var dy = y2 - y1;
         return Math.sqrt(dx*dx + dy*dy)
     },
-
+    /**
+     * returns square of distance between 2 dots
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @returns {number}
+     */
     distanceSq: function(x1, y1, x2, y2) {
-        var dx = x2 - x1
-        var dy = y2 - y1
+        var dx = x2 - x1;
+        var dy = y2 - y1;
         return dx*dx + dy*dy
     },
-
+    /**
+     *
+     * @param px
+     * @param py
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @returns {*|number}
+     */
     distanceToSegmentSq: function(px, py, x1, y1, x2, y2) {
-        segLen2 = this.distanceSq(x1, y1, x2, y2)
-        if (segLen2 === 0) return this.distanceSq(px, py, x1, y1)
-        var t = ((px - x1)*(x2 - x1) + (py - y1)*(y2 - y1)) / segLen2
-        if (t < 0) return this.distanceSq(px, py, x1, y1)
-        if (t > 1) return this.distanceSq(px, py, x2, y2)
-        return this.distanceSq(px, py, x1 + t*(x2 - x1), y1 + t*(y2 - y1))
+        let segLen2 = this.distanceSq(x1, y1, x2, y2);
+        if (segLen2 === 0) return this.distanceSq(px, py, x1, y1);
+        var t = ((px - x1)*(x2 - x1) + (py - y1)*(y2 - y1)) / segLen2;
+        if (t < 0) return this.distanceSq(px, py, x1, y1);
+        if (t > 1) return this.distanceSq(px, py, x2, y2);
+        return this.distanceSq(px, py, x1 + t*(x2 - x1), y1 + t*(y2 - y1));
     },
 
     distanceToSegment: function(px, py, x1, y1, x2, y2) {
         return Math.sqrt(this.distanceToSegmentSq(px, py, x1, y1, x2, y2))
     },
-
 
     // angle from source to target vectors
     targetAngle: function(sx, sy, tx, ty) {
