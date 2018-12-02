@@ -12,7 +12,7 @@ let fog = {
 
     Z: 11,
 
-    active: true,
+    active: false,
 
     color: '#100500',
 
@@ -38,7 +38,7 @@ let fog = {
         ctx.save()
         //ctx.drawImage(res['smoke-particle'], ctx.width/2, ctx.height/2, 100, 100)
 
-        let step = 2
+        let step = 5
         let clearRadius = this.R
         let maxRadius = Math.max(ctx.width, ctx.height)
 
@@ -54,7 +54,7 @@ let fog = {
         let alphaStep = MAX_ALPHA/((this.R*intencity-this.R)/step)
 
         ctx.strokeStyle = this.color
-        ctx.lineWidth = 2
+        ctx.lineWidth = 5
 
         // TODO get actual player screen coordinates
         //let sx = lab.camera.screenX(lab.camera.master.x)

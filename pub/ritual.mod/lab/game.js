@@ -17,6 +17,9 @@ let cheatCode = {
     'master': function() {
         lab.camera.master.god = !lab.camera.master.god
     },
+    'fog': function() {
+        lab.fog.active = !lab.fog.active
+    },
 }
 
 let game = {
