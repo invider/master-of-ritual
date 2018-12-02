@@ -31,6 +31,10 @@ Menu.prototype.stacks = function(){
     }
     return res;
 };
+Menu.prototype.drawIcon = function(itemX, itemY, tiles){
+    res.items.background_icon.draw(0, itemX - 12, this.y + this.itemBgYMargin, this.itemBgW, this.itemBgH );
+    tiles.draw(0, itemX, itemY, this.itemW, this.itemW );
+};
 Menu.prototype.draw = function() {
     // fix position
     let w = this.w;
@@ -47,10 +51,7 @@ Menu.prototype.draw = function() {
         let item = icons[i];
         let itemX = this.x + i * (this.itemW + this.itemSpacing) + this.itemMargin;
         let itemY = this.y + this.itemVertMargin;
-        res.items.background_icon.draw(0, itemX - 12, this.y + this.itemBgYMargin, this.itemBgW, this.itemBgH );
-        item.item.tiles.draw(0, itemX, itemY, this.itemW, this.itemW );
-
-        ctx.fillText(item.count, itemX + this.textMargin, itemY + this.textMargin)
+        this.drawIcon(itemX, itemY, item.item.tiles)
     }
 
     let hoodsY = this.y + 5;

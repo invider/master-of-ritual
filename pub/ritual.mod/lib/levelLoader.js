@@ -41,7 +41,6 @@ let LevelLoader = {
             if (typeof TYPEMAP[symbol] !== "string"){
                 type = TYPEMAP[symbol].proto;
                 sys.augment(params, TYPEMAP[symbol].params);
-                debugger;
             }
             params.name = params.name || this.formatName(type);
             sys.spawn(type, params, "camera");
