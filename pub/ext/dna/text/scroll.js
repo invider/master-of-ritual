@@ -2,6 +2,7 @@ module.exports = function(init) {
 
     let res = {
         timer: 0,
+        dtimer: 1,
         line: 0,
         align: 'center',
 
@@ -23,17 +24,22 @@ module.exports = function(init) {
                 ttf: this.fadeout,
                 dy: this.speed,
             })
+            this.dtimer = this.time
         },
 
         evo: function(dt) {
-            this.timer -= dt
+            if (!this.alive) return
 
-            if (this.timer < 0) {
+            this.timer -= dt
+            this.dtimer -= dt
+
+            if (this.timer < 0 && this.line < this.txt.length) {
                 this.timer = this.period
                 this.spawnLine(this.txt[this.line++])
             }
 
-            if (this.line >= this.txt.length) {
+            if (this.line >= this.txt.length && this.dtimer < 0) {
+                this.alive = false
                 this.__.detach(this)
             }
         },
