@@ -68,6 +68,10 @@ Item.prototype.hit = function(element){
         lab.camera.detach(this);
         element.inventory.push(this.itemType);
     }
-
 };
+
+Item.prototype.draw = function(){
+    dna.Character.prototype.draw.call(this);
+};
+
 module.exports = Item;

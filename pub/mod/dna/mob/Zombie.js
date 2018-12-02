@@ -14,6 +14,7 @@ let Zombie = function(st) {
     this.endTilex = 1;
     this.framerate = 6;
     this.speed = 0.2;
+    this.spawnOnDie = "eye"
 }
 
 sys.extend(Zombie, dna.Mob);

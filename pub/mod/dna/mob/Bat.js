@@ -14,6 +14,7 @@ let Bat = function(st) {
     this.endTilex = 3
     this.framerate = 6
     this.speed = 0.6
+    this.spawnOnDie = "wing"
 };
 
 

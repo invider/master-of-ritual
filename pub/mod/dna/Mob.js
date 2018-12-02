@@ -10,6 +10,7 @@ let Mob = function(st) {
     this.lastY = 0;
     this.distanceThreshold = 3;
     this.showHoods = true;
+    this.spawnOnDie = "wing"
 };
 
 sys.extend(Mob, dna.Character);
@@ -31,7 +32,19 @@ Mob.prototype.hit = function(el, dt){
     }
     */
 };
-
+Mob.prototype.die = function(){
+    dna.Character.prototype.die.call(this);
+    if (this.spawnOnDie){
+        let params = {
+            x: this.x,
+            y: this.y,
+            w: 1,
+            h: 1,
+            itemType: this.spawnOnDie
+        };
+        sys.spawn("Item", params, "camera");
+    }
+};
 Mob.prototype.evo = function(dt){
     dna.Character.prototype.evo.call(this, dt);
     //this.lastX = this.x;
