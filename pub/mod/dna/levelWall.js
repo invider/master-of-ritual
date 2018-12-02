@@ -23,20 +23,4 @@ let LevelWall = function(st) {
 
 sys.extend(LevelWall, dna.Sprite);
 
-// LevelWall.prototype.draw = function() {
-//
-//     res.wall.draw(0, this.x-0.5, this.y-0.5, 1, 1);
-//     //
-//     // if (env.debug) {
-//     //     if (this.status) {
-//     //         ctx.fillStyle = '#FF0000'
-//     //         ctx.font = '0.1px kenney-rocket-square'
-//     //         ctx.textAlign = 'center'
-//     //         ctx.textBaseline = 'bottom'
-//     //
-//     //         ctx.fillText(this.status, this.x, this.y)
-//     //     }
-//     // }
-// };
-
 module.exports = LevelWall;
