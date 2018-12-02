@@ -108,9 +108,12 @@ Character.prototype.draw = function() {
             if (this.lastDx <= 0) {
                 this.tiles.draw(this.tilex, -this.w/2, -this.h/2, this.w, this.h)
             } else {
+                // flip
+                ctx.save()
                 var rad = 2 * Math.PI
                 ctx.scale(-1, 1);
                 this.tiles.draw(this.tilex, -this.w/2, -this.h/2, this.w, this.h)
+                ctx.restore()
             }
         }
     }
