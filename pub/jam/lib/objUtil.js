@@ -61,7 +61,7 @@ var objUtil = {
      * @returns {*[]}
      */
     findObjInRadius: function(obj, radius){
-        return obj.__._ls.filter(o => this.distance(this, o) <= radius);
+        return obj.__._ls.filter(o => this.distance(obj, o) <= radius);
     },
     /**
      *
