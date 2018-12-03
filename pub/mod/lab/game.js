@@ -17,6 +17,12 @@ let cheatCode = {
     'master': function() {
         lab.camera.master.god = !lab.camera.master.god
     },
+    'moremana': function() {
+        lab.camera.master.mana = lab.camera.master.maxMana
+    },
+    'morehealth': function() {
+        lab.camera.master.hp = lab.camera.master.maxHp
+    },
     'fog': function() {
         lab.fog.active = !lab.fog.active
     },

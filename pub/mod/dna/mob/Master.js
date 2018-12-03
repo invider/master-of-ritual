@@ -57,13 +57,35 @@ Master.prototype.tryPot = function(type){
     }
 };
 
+Master.prototype.spellFx = function(type) {
+    let opt = env.tuning[type]
+
+    sys.spawn('Emitter', {
+        Z: this.Z+3,
+        x: this.x,
+        y: this.y + this.h/3,
+        color: opt.color,
+        lifespan: 0.04,
+        force: 20000,
+        radius: 0,
+        size: 0.04, vsize: 0,
+        speed: opt.speed, vspeed: 0,
+        angle: 0, spread: lib.math.PI2,
+        minLifespan: opt.ttl, vLifespan: 0,
+    }, 'camera')
+
+    lib.sfx(res.sfx.ghost1, 0.8)
+}
+
 Master.prototype.trySpell = function(spell){
-    if (this._spellTimers[spell.type]){
-        this.hint(res.msg.cooldown + Math.round(this._spellTimers[spell.type]).toString(), '#f03000')
-    } else if (this.mana > spell.mana){
+    if (!this.god && this._spellTimers[spell.type]){
+        this.hint(res.msg.cooldown + Math.ceil(this._spellTimers[spell.type]).toString(), '#f03000')
+    } else if (this.mana > spell.mana || this.god){
         this._spellTimers[spell.type] = spell.cooldown;
         lib.objUtil.findObjInRadius(this, spell.dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(spell.dmg, this));
-        this.mana -= spell.mana;
+        if (!this.god) this.mana -= spell.mana;
+
+        this.spellFx(spell.type)
     } else {
         this.hint(res.msg.noMana, '#f03000')
     }
@@ -89,10 +111,10 @@ Master.prototype.useItem = function(type){
     }
 };
 Master.prototype.setHp = function(hp){
-    this.hp = Math.max(hp, 100);
+    this.hp = Math.max(hp, this.maxHp);
 };
 Master.prototype.setMana = function(mana){
-    this.mana = Math.max(mana, 100);
+    this.mana = Math.max(mana, this.maxMana);
 };
 
 Master.prototype.evo = function(dt){
@@ -107,17 +129,17 @@ Master.prototype.evo = function(dt){
     this.keys.manapot && this.tryPot("mana_potion");
     this.keys.spell1 && this.trySpell({
         type: "shadow",
-        dmgRadius: 3,
-        dmg:10,
-        mana: 5,
-        cooldown: 1
+        dmgRadius: env.tuning.shadow.radius,
+        dmg: env.tuning.shadow.dmg,
+        mana: env.tuning.shadow.mana,
+        cooldown: env.tuning.shadow.cooldown,
     });
     this.keys.spell2 && this.trySpell({
         type: "fire",
-        dmgRadius: 30,
-        dmg: 40,
-        mana: 30,
-        cooldown:30
+        dmgRadius: env.tuning.fire.radius,
+        dmg: env.tuning.fire.dmg,
+        mana: env.tuning.fire.mana,
+        cooldown: env.tuning.fire.cooldown,
     });
     this.keys.spell1 = this.keys.spell2 = this.keys.healingpot = this.keys.manapot = false;
 

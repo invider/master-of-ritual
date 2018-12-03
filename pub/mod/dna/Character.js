@@ -32,7 +32,6 @@ let Character = function(st) {
     this.hoodWidth = 0.5;
     this.hoodHeight = 0.02;
     this.hpHoodY = 0.03;
-    this.hoodsX = 0;
     this.manaHoodY = 0.07;
     this.showHoods = false;
 

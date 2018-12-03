@@ -1,4 +1,6 @@
 module.exports = function(e) {
+    if (!lab.camera.master) return
+
     switch(e.key) {
         case 'ArrowLeft': lab.camera.master.keys.left = false; break;
         case 'ArrowUp': lab.camera.master.keys.up = false; break;
@@ -8,4 +10,5 @@ module.exports = function(e) {
         // case '2': lab.camera.master.keys.spell2 = false; break;
     }
     lab.game.keyUp(e.key)
+
 };

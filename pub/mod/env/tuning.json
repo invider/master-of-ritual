@@ -4,6 +4,25 @@
     "initialHP": 100,
     "initialMana": 100,
 
+    "shadow": {
+        "radius": 2,
+        "mana": 5,
+        "dmg": 10,
+        "cooldown": 1,
+        "color": "#4090ff",
+        "speed": 6,
+        "ttl": 0.3
+    },
+    "fire": {
+        "radius": 3,
+        "mana": 25,
+        "dmg": 25,
+        "cooldown": 15,
+        "color": "#ff4010",
+        "speed": 7,
+        "ttl": 0.4
+    },
+
     "bat": {
         "hp": 25,
         "mana": 0,
