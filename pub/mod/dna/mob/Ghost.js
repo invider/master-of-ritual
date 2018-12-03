@@ -14,8 +14,10 @@ let Ghost = function(st) {
     this.startTilex = 0
     this.endTilex = 4
     this.framerate = 6
-    this.speed = 0.3
     this.spawnOnDie = false
+
+    sys.augment(this, env.tuning.ghost)
+    sys.augment(this, st)
 };
 
 sys.extend(Ghost, dna.Mob)

@@ -8,18 +8,23 @@ let Character = function(st) {
     dna.Sprite.call(this, st);
     this.Z = 30
 
-    this.hp = 100;
-    this.mana = 0;
-
     this.alive = true
     this.solid = true // indicates, that we can't pass through the walls
     this.collidable = true // indicates if we can hit other mobs
-    this.damage = 3;
+
+    this.hp = 100;
+    this.mana = 0;
+    this.speed = 0.5;
+    this.scan = 1;
+    this.attack = 1;
+    this.range = 1;
+    this.cooldown = 1;
 
     this.dx = 0
     this.dy = 0
     this.lastDx = 0
     this.lastDxT = 0
+    this.cooling = 1
 
     this.hoodWidth = 1;
     this.hoodHeight = 0.02;
@@ -52,14 +57,18 @@ Character.prototype.hint = function(msg, color, st) {
     sys.spawn('text/fadeText', opt)
 }
 
-Character.prototype.applyDamage = function(damage){
+Character.prototype.applyDamage = function(damage, src){
+    if (this.god) return
+
     this.hp -= damage;
+
     this.hint('-' + damage, '#ff0000', {
         dx: lib.math.rndi(30)-15,
         dy: -30 - damage/2,
     })
-    // TODO play sfx
+    lib.sfx(res.sfx.hit, 0.5)
 };
+
 Character.prototype.tryToMove = function(dx, dy) {
     // calculate expected move coordinates
     if (dx === 0 && dy === 0) return 
@@ -98,6 +107,7 @@ Character.prototype.evo = function(dt) {
     if (this.mana < 0){
         this.mana = 0;
     }
+    this.cooling -= dt
     this.lastDxT -= dt
     this.move(dt)
 };

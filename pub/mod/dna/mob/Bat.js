@@ -13,8 +13,10 @@ let Bat = function(st) {
     this.startTilex = 0
     this.endTilex = 3
     this.framerate = 6
-    this.speed = 0.6
     this.spawnOnDie = "wing"
+
+    sys.augment(this, env.tuning.bat)
+    sys.augment(this, st)
 };
 
 
