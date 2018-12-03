@@ -1,4 +1,8 @@
+'use strict'
 module.exports = (function() { 
+
+const PI = Math.PI
+const PI2 = PI*2
 
 // LCG random generator implementation
 var _rnd_m = 0xFFFFFFFF, _rnd_a = 1664525, _rnd_c = 1013904223;
@@ -9,12 +13,12 @@ function rndv() {
 	return _seed
 }
 
-
 return {
     name: 'math',
     _info: 'library of math functions',
 
-    PI2: Math.PI * 2,
+    PI: PI,
+    PI2: PI2,
 
     length: function(x, y) {
         return Math.sqrt(x*x + y*y)

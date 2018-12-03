@@ -31,7 +31,6 @@ let Master = function(st) {
     };
 
     this._spellTimers = {
-
     };
 
     this.tiles = res.master;
@@ -52,15 +51,6 @@ Master.prototype.die = function(){
     lab.game.gameOwer();
 };
 
-/*
-Master.prototype.hit = function(source, dt) {
-    if (source instanceof dna.Mob && !this.god){
-        this.applyDamage(source.damage * dt);
-        lib.sfx(res.sfx.hit, 0.5)
-    }
-};
-*/
-
 Master.prototype.tryPot = function(type){
     if (this.countItems(type) > 0){
         this.useItem(type);
@@ -72,7 +62,7 @@ Master.prototype.trySpell = function(spell){
         this.hint(res.msg.cooldown + Math.round(this._spellTimers[spell.type]).toString(), '#f03000')
     } else if (this.mana > spell.mana){
         this._spellTimers[spell.type] = spell.cooldown;
-        lib.objUtil.findObjInRadius(this, spell.dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(spell.dmg));
+        lib.objUtil.findObjInRadius(this, spell.dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(spell.dmg, this));
         this.mana -= spell.mana;
     } else {
         this.hint(res.msg.noMana, '#f03000')

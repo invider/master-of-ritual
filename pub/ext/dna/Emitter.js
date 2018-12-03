@@ -9,7 +9,6 @@ let Particle = function(dat) {
     this.dx = Math.cos(this.angle) * this.speed
     this.dy = Math.sin(this.angle) * this.speed
 
-
     this.evo = function(dt) {
         this.move(dt)
         this.lifespan -= dt 
@@ -22,20 +21,21 @@ var Emitter = function(init) {
     this.dead = false
     this.blend = 'source-over'
 
+    this.lifespan = 1
+    this.force = 200
+    this.radius = 0
+    this.size = 1
+    this.vsize = 0
+    this.speed = 100
+    this.vspeed = 0
+    this.angle = 0
+    this.spread = Math.PI * 2
+    this.minLifespan = 1
+    this.vLifespan = 0
+
     // augmenting
     augment(this, init)
 
-    // fixing with defaults
-    if (!this.lifespan) this.lifespan = 2
-    if (!this.force) this.force = 200
-    if (!this.size) this.size = 1
-    if (!this.vsize) this.vsize = 0
-    if (!this.speed) this.speed = 100
-    if (!this.vspeed) this.vspeed = 0
-    if (!this.angle) this.angle = 0
-    if (!this.spread) this.spread = Math.PI * 2
-    if (!this.minLifespan) this.minLifespan = 1
-    if (!this.vLifespan) this.vLifespan = 0
     if (this.force) this.frequency = 1/this.force
 
     this.potential = 0
@@ -72,11 +72,20 @@ Emitter.prototype.drawParticle = function() {
 }
 
 Emitter.prototype.createParticle = function() {
+    let x = 0
+    let y = 0
+    if (this.radius) {
+        let r = lib.math.rnd(this.radius)
+        let fi = lib.math.rndfi()
+        x = Math.cos(fi) * r
+        y = Math.sin(fi) * r
+    }
+
     return new Particle({
         img: this.img,
         color: this.color,
-        x: 0,
-        y: 0, 
+        x: x,
+        y: y, 
         r: this.size + lib.math.rnd(this.vsize),
         speed: this.speed + lib.math.rnd(this.vspeed),
         angle: this.angle + lib.math.rnd(this.spread),

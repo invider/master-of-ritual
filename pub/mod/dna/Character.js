@@ -19,6 +19,9 @@ let Character = function(st) {
     this.attack = 1;
     this.range = 1;
     this.cooldown = 1;
+    this.bloodColor = '#ff2000';
+    this.bloodRadius = 0.3;
+    this.bloodIntensity = 300;
 
     this.dx = 0
     this.dy = 0
@@ -57,15 +60,41 @@ Character.prototype.hint = function(msg, color, st) {
     sys.spawn('text/fadeText', opt)
 }
 
-Character.prototype.applyDamage = function(damage, src){
-    if (this.god) return
+Character.prototype.bleed = function(damage, src) {
 
-    this.hp -= damage;
+    // determine hit vector
+    let v = lib.objUtil.vector(src, this)
+    let angle = Math.atan2(v.y, v.x);
+    
+    // detarmine hit point
+    let r = lib.math.rnd(this.bloodRadius)
+    let fi = lib.math.rndfi()
+    let dx = Math.cos(fi) * r
+    let dy = Math.sin(fi) * r
+
+    sys.spawn('Emitter', {
+        Z: this.Z+2,
+        x: this.x + dx,
+        y: this.y + dy,
+        color: this.bloodColor,
+        lifespan: 0.12,
+        force: this.bloodIntensity*damage,
+        radius: 0.1,
+        size: 0.02, vsize: 0.02,
+        speed: 1, vspeed: 0.2,
+        angle: angle-0.3, spread: 0.6,
+        minLifespan: 0.1, vLifespan: 0.1,
+    }, 'camera')
+}
+
+Character.prototype.applyDamage = function(damage, src){
+    if (!this.god) this.hp -= damage;
 
     this.hint('-' + damage, '#ff0000', {
         dx: lib.math.rndi(30)-15,
         dy: -30 - damage/2,
     })
+    this.bleed(damage, src)
     lib.sfx(res.sfx.hit, 0.5)
 };
 

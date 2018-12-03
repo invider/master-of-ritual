@@ -1,4 +1,6 @@
 module.exports = function(e) {
+    if (!lab.camera.master) return
+
     switch(e.key.toString()) {
         case 'ArrowLeft': lab.camera.master.keys.left = true; break;
         case 'ArrowUp': lab.camera.master.keys.up = true; break;

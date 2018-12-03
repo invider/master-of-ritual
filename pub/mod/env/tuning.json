@@ -9,35 +9,43 @@
         "mana": 0,
         "speed": 0.4,
         "scan": 2,
-        "attack": 5,
+        "attack": 1, 
         "range": 1,
-        "cooldown": 1
+        "cooldown": 0.3,
+        "bloodColor": "#ff4000",
+        "bloodIntencity": 100,
+        "bloodRadius": 0.2
     },
     "ghost": {
         "hp": 100,
         "mana": 0,
         "speed": 0.15,
         "scan": 3,
-        "attack": 5,
-        "range": 0.5,
-        "cooldown": 1
+        "attack": 1,
+        "range": 0.3,
+        "cooldown": 1,
+        "bloodColor": "#42c8f4",
+        "bloodRadius": 0.15
     },
     "skeleton": {
         "hp": 100,
         "mana": 0,
         "speed": 0.3,
-        "scan": 5,
-        "attack": 5,
+        "scan": 4,
+        "attack": 7,
         "range": 1,
-        "cooldown": 1
+        "cooldown": 1.5,
+        "bloodColor": "#c2d834"
     },
     "zombie": {
         "hp": 100,
         "mana": 0,
         "speed": 0.2,
         "scan": 2,
-        "attack": 5,
+        "attack": 7,
         "range": 1,
-        "cooldown": 1
+        "cooldown": 2,
+        "bloodColor": "#34d872",
+        "bloodRadius": 0.2
     }
 }
