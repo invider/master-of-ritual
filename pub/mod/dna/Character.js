@@ -29,7 +29,7 @@ let Character = function(st) {
     this.lastDxT = 0
     this.cooling = 1
 
-    this.hoodWidth = 1;
+    this.hoodWidth = 0.5;
     this.hoodHeight = 0.02;
     this.hpHoodY = 0.03;
     this.hoodsX = 0;
@@ -38,8 +38,12 @@ let Character = function(st) {
 
     sys.augment(this, st)
 }
-
 sys.extend(Character, dna.Sprite);
+
+Character.prototype.init = function() {
+    this.maxHp = this.hp
+    this.maxMana = this.mana
+}
 
 Character.prototype.hint = function(msg, color, st) {
     let opt = {
@@ -144,12 +148,12 @@ Character.prototype.evo = function(dt) {
 Character.prototype.draw = function() {
     dna.Sprite.prototype.draw.call(this)
 
-    ctx.save()
-    // translate to corner coordinates
-    ctx.translate(this.x-this.w/2, this.y-this.h/2)
-
     if (env.debug) {
         // debug - draw border and active frames
+        ctx.save()
+        // translate to corner coordinates
+        ctx.translate(-this.w/2, -this.h/2)
+
         ctx.lineWidth = 0.01
         ctx.strokeStyle = '#00ff00'
         ctx.strokeRect(0, 0, this.w, this.h)
@@ -164,20 +168,22 @@ Character.prototype.draw = function() {
 
             ctx.fillText(this.status, this.w/2, -0.05)
         }
+        ctx.restore()
     }
-    if (this.name == "master"){
-    }
+
     if(this.showHoods){
+        ctx.save()
+        ctx.translate(this.x, this.y-this.h/2)
+
+        let w = (this.hp/this.maxHp + 0.2)* this.hoodWidth
         ctx.fillStyle = "#F00";
-        ctx.fillRect(this.hoodsX, this.hpHoodY, (this.hoodWidth / 100) * this.hp, this.hoodHeight);
+        ctx.fillRect(-w/2, this.hpHoodY, w, this.hoodHeight);
 
-
+        w = (this.mana/this.maxMana + 0.2) * this.hoodWidth
         ctx.fillStyle = "#00F";
-        ctx.fillRect(this.hoodsX, this.manaHoodY,  (this.hoodWidth / 100) * this.mana, this.hoodHeight);
-
+        ctx.fillRect(-w/2, this.manaHoodY,  w, this.hoodHeight);
+        ctx.restore()
     }
-
-    ctx.restore()
 }
 
 module.exports = Character

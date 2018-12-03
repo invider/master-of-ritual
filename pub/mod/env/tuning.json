@@ -5,7 +5,7 @@
     "initialMana": 100,
 
     "bat": {
-        "hp": 100,
+        "hp": 25,
         "mana": 0,
         "speed": 0.4,
         "scan": 2,
@@ -17,7 +17,7 @@
         "bloodRadius": 0.2
     },
     "ghost": {
-        "hp": 100,
+        "hp": 50,
         "mana": 0,
         "speed": 0.15,
         "scan": 3,
@@ -28,7 +28,7 @@
         "bloodRadius": 0.15
     },
     "skeleton": {
-        "hp": 100,
+        "hp": 60,
         "mana": 0,
         "speed": 0.3,
         "scan": 4,
@@ -38,7 +38,7 @@
         "bloodColor": "#c2d834"
     },
     "zombie": {
-        "hp": 100,
+        "hp": 90,
         "mana": 0,
         "speed": 0.2,
         "scan": 2,
