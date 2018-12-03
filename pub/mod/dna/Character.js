@@ -178,7 +178,7 @@ Character.prototype.draw = function() {
         ctx.save()
         ctx.translate(this.x, this.y-this.h/2)
 
-        let w = (this.hp/this.maxHp + 0.2)* this.hoodWidth
+        let w = (this.hp/this.maxHp + 0.05)* this.hoodWidth
         ctx.fillStyle = "#F00";
         ctx.fillRect(-w/2, this.hpHoodY, w, this.hoodHeight);
 

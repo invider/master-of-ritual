@@ -20,6 +20,9 @@ let cheatCode = {
     'superspeed': function() {
         lab.camera.master.speed = 5
     },
+    'superdamage': function() {
+        lab.camera.master.die()
+    },
     'moremana': function() {
         lab.camera.master.mana = lab.camera.master.maxMana
     },
@@ -52,6 +55,9 @@ let game = {
 
     gameOwer: function(){
         this.loadLevel(res.levels.death);
+        lab.camera.x = 17
+        lab.camera.y = 8
+        lab.camera.scale = 25
     },
 
     loadLevel: function(levelRes){
