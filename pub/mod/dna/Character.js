@@ -45,6 +45,10 @@ Character.prototype.init = function() {
 }
 
 Character.prototype.hint = function(msg, color, st) {
+    if (st && st.name) {
+        if (lab[st.name]) return
+    }
+
     let opt = {
         text: msg,
         fillStyle: color,

@@ -1,29 +1,17 @@
 let FadeText = function(dat) {
+    this.alive = true
+    this.time = 0
+    this.align ="left"
+    this.base = "top"
+
+    sys.augment(this, dat)
+
+    this.tta = this.ttl - this.ttf
+    if (this.tta < 0) this.tta = 0
     if (dat.rx) this.x = dat.rx/100 * ctx.width;
     else this.x = dat.x
     if (dat.ry) this.y = dat.ry/100 * ctx.height;
     else this.y = dat.y
-    if (dat.dx) this.dx = dat.dx
-    else this.dx = 0
-    if (dat.dy) this.dy = dat.dy
-    else this.dy = 0
-
-    this.text = dat.text
-    this.font = dat.font
-    this.fillStyle = dat.fillStyle
-    this.ttl = dat.ttl
-    this.tti = dat.tti
-    this.ttf = dat.ttf
-    this.tta = this.ttl - this.ttf
-    if (this.tta < 0) this.tta = 0
-
-    this.alive = true
-    this.time = 0
-
-    this.align ="left"
-    this.base = "top"
-    if (dat.align) this.align = dat.align
-    if (dat.base) this.base = dat.base
 }
 
 FadeText.prototype.evo = function(dt) {
