@@ -7,7 +7,11 @@ module.exports = {
         let h = obj.ah
         
         lab.camera._ls.forEach(t => {
-            if (t instanceof dna.levelWall 
+            if (t !== obj
+                    && t.solid
+                    && (t instanceof dna.levelWall
+                        || t instanceof dna.Mob
+                        || t instanceof dna.mob.Master)
                     // test on collision
                     && x+w/2 >= t.x-t.aw/2
                     && x-w/2 <= t.x+t.aw/2

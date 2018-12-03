@@ -1,6 +1,7 @@
 // @depends(dna/Sprite)
 let LevelWall = function(st) {
     dna.Sprite.call(this, st);
+    this.solid = true
     this.Z = 20
     this.w = 1
     this.h = 1
