@@ -8,7 +8,7 @@ var Menu = function(st) {
     this.itemVertMargin = 15;
     this.itemSpacing = 24
     this.itemMargin = 18;
-    this.textMargin = - 10;
+    this.textMargin = -3;
     this.hoodWidth = 15;
     this.hoodHeight = 90;
 };
@@ -36,9 +36,10 @@ Menu.prototype.stacks = function(){
     return res;
 };
 
-Menu.prototype.drawIcon = function(itemX, itemY, tiles){
+Menu.prototype.drawIcon = function(itemX, itemY, tiles, count){
     res.items.background_icon.draw(0, itemX - 12, this.y + this.itemBgYMargin, this.itemBgW, this.itemBgH );
     tiles.draw(0, itemX, itemY, this.itemW, this.itemW );
+    count && ctx.fillText(count, itemX + this.textMargin, itemY + this.textMargin)
 };
 Menu.prototype.draw = function() {
     if(!lab.camera.master){
@@ -53,14 +54,14 @@ Menu.prototype.draw = function() {
     ctx.drawImage(this.background, this.x, this.y, w, this.h);
 
     ctx.font = '10pt Calibri';
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = 'black';
 
     let ingredients = this.stacks().filter(o => o.item.ingredient);
     for (var i = 0; i < ingredients.length; i++){
         let item = ingredients[i];
         let itemX = this.x + i * (this.itemW + this.itemSpacing) + this.ingredientMargin;
         let itemY = this.y + this.itemVertMargin;
-        this.drawIcon(itemX, itemY, item.item.tiles)
+        this.drawIcon(itemX, itemY, item.item.tiles, item.count)
     }
 
     let icons = this.stacks().filter(o => !o.item.ingredient);
@@ -68,7 +69,7 @@ Menu.prototype.draw = function() {
         let item = icons[i];
         let itemX = this.x + i * (this.itemW + this.itemSpacing) + this.itemMargin;
         let itemY = this.y + this.itemVertMargin;
-        this.drawIcon(itemX, itemY, item.item.tiles)
+        this.drawIcon(itemX, itemY, item.item.tiles, item.count)
     }
 
     let hoodsY = this.y + 5;
