@@ -2,7 +2,6 @@
 
 let Zombie = function(st) {
     dna.Mob.call(this, st);
-    this.Z = 30
 
     this.w = 1;
     this.h = 1;

@@ -79,7 +79,7 @@ Master.prototype.spellFx = function(type) {
 
 Master.prototype.trySpell = function(spell){
     if (!this.god && this._spellTimers[spell.type]){
-        this.hint(res.msg.cooldown + Math.ceil(this._spellTimers[spell.type]).toString(), '#f03000')
+        this.hint(res.msg.cooldown + Math.ceil(this._spellTimers[spell.type]).toString(), '#34cee2')
     } else if (this.mana > spell.mana || this.god){
         this._spellTimers[spell.type] = spell.cooldown;
         lib.objUtil.findObjInRadius(this, spell.dmgRadius).filter(o => o instanceof dna.Mob).forEach(o => o.applyDamage(spell.dmg, this));
@@ -87,9 +87,10 @@ Master.prototype.trySpell = function(spell){
 
         this.spellFx(spell.type)
     } else {
-        this.hint(res.msg.noMana, '#f03000')
+        this.hint(res.msg.noMana, '#258cdb')
     }
 };
+
 Master.prototype.countItems = function(type){
     let count = 0;
     for (let k in this.inventory){
@@ -100,6 +101,7 @@ Master.prototype.countItems = function(type){
     }
     return count;
 };
+
 Master.prototype.useItem = function(type){
     for (let k in this.inventory) {
         let item = this.inventory[k];
@@ -110,11 +112,13 @@ Master.prototype.useItem = function(type){
         }
     }
 };
+
 Master.prototype.setHp = function(hp){
-    this.hp = Math.max(hp, this.maxHp);
+    this.hp = Math.min(hp, this.maxHp);
 };
+
 Master.prototype.setMana = function(mana){
-    this.mana = Math.max(mana, this.maxMana);
+    this.mana = Math.min(mana, this.maxMana);
 };
 
 Master.prototype.evo = function(dt){

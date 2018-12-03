@@ -14,8 +14,11 @@ let cheatCode = {
     'ether': function() {
         lab.camera.master.solid = !lab.camera.master.solid
     },
-    'master': function() {
+    'superhuman': function() {
         lab.camera.master.god = !lab.camera.master.god
+    },
+    'superspeed': function() {
+        lab.camera.master.speed = 5
     },
     'moremana': function() {
         lab.camera.master.mana = lab.camera.master.maxMana

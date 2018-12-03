@@ -4,6 +4,7 @@
 
 let Mob = function(st) {
     dna.Character.call(this, st);
+    this.Z = 52
 
     this.lastX = 0;
     this.lastY = 0;

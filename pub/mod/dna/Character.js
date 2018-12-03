@@ -6,7 +6,7 @@ const FLIP_TIME = 0.75
 
 let Character = function(st) {
     dna.Sprite.call(this, st);
-    this.Z = 30
+    this.Z = 50
 
     this.alive = true
     this.solid = true // indicates, that we can't pass through the walls
@@ -93,7 +93,7 @@ Character.prototype.bleed = function(damage, src) {
 Character.prototype.applyDamage = function(damage, src){
     if (!this.god) this.hp -= damage;
 
-    this.hint('-' + damage, '#ff0000', {
+    this.hint('-' + damage, this.bloodColor, {
         dx: lib.math.rndi(30)-15,
         dy: -30 - damage/2,
     })

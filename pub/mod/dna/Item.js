@@ -1,6 +1,12 @@
 'use strict'
 let Item = function(st) {
     dna.Character.call(this, st);
+
+    this.w = 0.5
+    this.h = 0.5
+    this.aw = 0.2 
+    this.ah = 0.2
+
     this._TYPES = {
         bone: {
             name: "bone",
@@ -27,6 +33,7 @@ let Item = function(st) {
             tiles:res.items.health_potion,
             use: function(){
                 lab.camera.master.setHp(lab.camera.master.hp + 50)
+                lib.sfx(res.sfx.tada4, 0.7)
             }
         },
         mana_potion: {
@@ -38,6 +45,7 @@ let Item = function(st) {
             tiles:res.items.mana_potion,
             use: function(){
                 lab.camera.master.setMana(lab.camera.master.mana + 50)
+                lib.sfx(res.sfx.tada2, 0.7)
             }
         },
         wig: {

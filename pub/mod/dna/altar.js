@@ -25,6 +25,7 @@ Altar.prototype.hit = function(char) {
     if (dna.mob.Master && char instanceof dna.mob.Master){
         if (this.checkGoal()) {
             lab.game.nextLevel();
+            lib.sfx(res.sfx.wawa1, 0.5)
         } else {
             if (!lab['goal-text']) {
 
@@ -43,9 +44,10 @@ Altar.prototype.hit = function(char) {
                     speed: -20,
                     txt: goalsText,
                     align: 'center',
-                    font: '14px kenney-rocket-square',
+                    font: '24px ' + env.tuning.textFont,
                     color: '#60FF20',
                 })
+                lib.sfx(res.sfx.tada1, 0.7)
             }
         }
     }
