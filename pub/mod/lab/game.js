@@ -23,6 +23,9 @@ let cheatCode = {
     'superdamage': function() {
         lab.camera.master.die()
     },
+    'superlevel': function() {
+        lab.game.nextLevel()
+    },
     'moremana': function() {
         lab.camera.master.mana = lab.camera.master.maxMana
     },
@@ -58,6 +61,7 @@ let game = {
         lab.camera.x = 17
         lab.camera.y = 8
         lab.camera.scale = 25
+        lib.sfx(res.sfx.ghost2, 1)
     },
 
     loadLevel: function(levelRes){

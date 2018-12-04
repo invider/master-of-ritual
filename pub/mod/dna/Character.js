@@ -130,6 +130,7 @@ Character.prototype.move = function(dt) {
 }
 
 Character.prototype.die = function(){
+    if (this.deathSfx) lib.sfx(this.deathSfx, 1)
     this.__.detach(this);
 };
 

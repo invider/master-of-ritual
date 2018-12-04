@@ -2,8 +2,8 @@ GOALS=eye:6, bone:2, wing:1
 STORY=story_level3
 ^^^SETTINGS^^^
 ******************
-*szzzbszzz       *
-*                *
-*@               *
-*M              A*
+*szzzbszzz  M   M*
+*  M         M  M*
+*@    M M  MM    *
+*M    M M       A*
 ******************

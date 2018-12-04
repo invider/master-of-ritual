@@ -14,6 +14,9 @@ let Zombie = function(st) {
     this.framerate = 6;
     this.spawnOnDie = "eye"
 
+    this.spotSfx = res.sfx.hey
+    this.deathSfx = res.sfx.oo
+
     sys.augment(this, env.tuning.zombie)
     sys.augment(this, st)
 }

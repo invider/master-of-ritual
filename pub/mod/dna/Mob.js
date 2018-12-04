@@ -6,8 +6,7 @@ let Mob = function(st) {
     dna.Character.call(this, st);
     this.Z = 52
 
-    this.lastX = 0;
-    this.lastY = 0;
+    this.lastSpot = 1;
     this.showHoods = true;
     this.spawnOnDie = "wing";
 
@@ -41,6 +40,7 @@ Mob.prototype.die = function(){
 
 Mob.prototype.evo = function(dt){
     dna.Character.prototype.evo.call(this, dt);
+    this.lastSpot -= dt
 
     let master = lab.camera.master;
     if (master) {
@@ -51,6 +51,11 @@ Mob.prototype.evo = function(dt){
             this.tryToMove(
                 this.calcDiff(master.x - this.x) * this.speed * dt,
                 this.calcDiff(master.y - this.y) * this.speed * dt)
+
+            if (this.lastSpot < 0 && this.spotSfx) {
+                lib.sfx(this.spotSfx, 0.7)
+                this.lastSpot = 5 + lib.math.rndi(5)
+            }
         }
 
         if (this.cooling < 0 && distanceToTarget <= this.range) {

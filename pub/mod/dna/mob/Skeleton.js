@@ -14,6 +14,9 @@ let Ghost = function(st) {
     this.framerate = 6
     this.spawnOnDie = "bone"
 
+    this.spotSfx = res.sfx.counter
+    this.deathSfx = res.sfx.drop
+
     sys.augment(this, env.tuning.skeleton)
     sys.augment(this, st)
 };

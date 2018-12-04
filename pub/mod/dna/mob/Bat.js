@@ -14,10 +14,12 @@ let Bat = function(st) {
     this.framerate = 6
     this.spawnOnDie = "wing"
 
+    this.spotSfx = res.sfx.bat1
+    this.deathSfx = res.sfx.bat2
+
     sys.augment(this, env.tuning.bat)
     sys.augment(this, st)
 };
-
 
 sys.extend(Bat, dna.Mob)
 
