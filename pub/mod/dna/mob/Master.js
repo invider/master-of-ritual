@@ -10,7 +10,7 @@ let Master = function(st) {
     this.h = 1;
     // active (collidable) width and height
     this.aw = 0.67;
-    this.ah = 0.95;
+    this.ah = 0.99;
 
     this.hp = env.tuning.initialHP
     this.mana = env.tuning.initialMana

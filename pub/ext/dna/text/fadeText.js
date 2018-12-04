@@ -1,8 +1,17 @@
 let FadeText = function(dat) {
     this.alive = true
     this.time = 0
+
+    this.x = 0
+    this.y = 0
+    this.dx = 0
+    this.dy = 0
+    this.ttl = 5
+    this.tti = 1
+    this.ttf = 1
     this.align ="left"
     this.base = "top"
+    this.font = '14px impact'
 
     sys.augment(this, dat)
 
