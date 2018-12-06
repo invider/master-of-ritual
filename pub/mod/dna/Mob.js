@@ -60,8 +60,10 @@ Mob.prototype.evo = function(dt){
 
         if (this.cooling < 0 && distanceToTarget <= this.range) {
             // attack
-            master.applyDamage(this.attack, this)
-            this.cooling = this.cooldown
+            if (!env.supernice) {
+                master.applyDamage(this.attack, this)
+                this.cooling = this.cooldown
+            }
         }
 
     }

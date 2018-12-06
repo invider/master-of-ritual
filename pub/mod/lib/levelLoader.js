@@ -62,22 +62,9 @@ let LevelLoader = {
             params.name = params.name || this.formatName(type);
             sys.spawn(type, params, "camera");
         })
+        
+        params.settings.STORY && lab.game.showStory(res.txt[params.settings.STORY])
 
-        // show the story
-        params.settings.STORY && sys.spawn('text/scroll', {
-            Z: 100,
-            rx: 75,
-            ry: 100,
-            period: 1.5,
-            time: 25,       // how long display each line
-            fadein: 2.5,
-            fadeout: 5,
-            speed: -25,
-            txt: res.txt[params.settings.STORY],
-            align: 'center',
-            font: '24px ' + env.tuning.textFont,
-            color: '#60FF20',
-        })
         if (!params.settings.FINAL){
             lib.asserts.assertTrue(params.settings.GOALS, "Goals not set for level")
             lab.camera.altar.goals = this.parseGoals(params.settings.GOALS);

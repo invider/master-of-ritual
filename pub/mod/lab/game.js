@@ -10,30 +10,46 @@ let match = function(cmd) {
 let cheatCode = {
     'debug': function() {
         env.debug = !env.debug
+        lab.camera.master.hint('debug mode: ' + env.debug)
     },
     'ether': function() {
         lab.camera.master.solid = !lab.camera.master.solid
+        lab.camera.master.hint('ether mode: ' + lib.camera.master.solid)
     },
     'superhuman': function() {
         lab.camera.master.god = !lab.camera.master.god
+        lab.camera.master.hint('god mode: ' + lab.camera.master.god)
+    },
+    'supernice': function() {
+        env.supernice = !env.supernice
+        lab.camera.master.hint('supernice: ' + env.supernice)
     },
     'superspeed': function() {
         lab.camera.master.speed = 5
+        lab.camera.master.hint('superspeed mode')
     },
     'superdamage': function() {
         lab.camera.master.die()
+        lab.camera.master.hint('suicide!')
     },
     'superlevel': function() {
         lab.game.nextLevel()
     },
     'moremana': function() {
         lab.camera.master.mana = lab.camera.master.maxMana
+        lab.camera.master.hint('more mana')
     },
     'morehealth': function() {
         lab.camera.master.hp = lab.camera.master.maxHp
+        lab.camera.master.hint('more health')
     },
     'fog': function() {
         lab.fog.active = !lab.fog.active
+    },
+    'superabilities': function() {
+        let txt = Object.keys(cheatCode).join('\n')
+        game.showStory(txt)
+        out.log(txt)
     },
 }
 
@@ -89,6 +105,24 @@ let game = {
             }
         })
     },
+
+    showStory: function(txt) {
+        // show the story
+        sys.spawn('text/scroll', {
+            Z: 100,
+            rx: 75,
+            ry: 100,
+            period: 1.5,
+            time: 25,       // how long display each line
+            fadein: 2.5,
+            fadeout: 5,
+            speed: -25,
+            txt: txt,
+            align: 'center',
+            font: '24px ' + env.tuning.textFont,
+            color: '#60FF20',
+        })
+    }
 
 };
 
