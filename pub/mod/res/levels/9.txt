@@ -1,0 +1,18 @@
+GOALS=eye:2, bone:2, wing:8
+STORY=story_level1
+^^^SETTINGS^^^
+*********************************************
+* @ *                                       *
+*   *                                       *
+*   *                                       *
+** **********                               * 
+*   * A                                  ****
+*  g*****************************************
+* *****                                     *
+*g  M                                       *
+*********************************************
+*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*
+*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*
+*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*
+*********************************************
+MH iEEBBBWWWW zsgb

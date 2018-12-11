@@ -156,7 +156,7 @@ Character.prototype.draw = function() {
         // debug - draw border and active frames
         ctx.save()
         // translate to corner coordinates
-        ctx.translate(-this.w/2, -this.h/2)
+        ctx.translate(this.x-this.w/2, this.y-this.h/2)
 
         ctx.lineWidth = 0.01
         ctx.strokeStyle = '#00ff00'

@@ -14,10 +14,10 @@ let Master = function(st) {
 
     this.hp = env.tuning.initialHP
     this.mana = env.tuning.initialMana
-    this.speed = 1;
-    this.showHoods = false;
-    this.inventory = [];
-    this.god = false;
+    this.speed = env.tuning.masterSpeed
+    this.showHoods = false
+    this.inventory = []
+    this.god = false
 
     this.keys = {
         up:false,
@@ -35,10 +35,10 @@ let Master = function(st) {
 
     this.tiles = res.master;
     this.startTilex = 0;
-    this.endTilex = 4;
-    this.framerate = 5;
+    this.endTilex = 5;
+    this.framerate = 4;
 
-    this.status = "dungeon master!"
+    //this.status = "dungeon master!"
 };
 
 sys.extend(Master, dna.Character);
@@ -48,7 +48,7 @@ Master.prototype.fixCamera = function() {
     lab.camera.y = this.y
 };
 Master.prototype.die = function(){
-    lab.game.gameOwer();
+    lab.game.gameOver();
 };
 
 Master.prototype.tryPot = function(type){
@@ -166,7 +166,7 @@ Master.prototype.evo = function(dt){
     this.lastDx = 0 // fix dx, so there won't be automatic flip
 
     this.fixCamera()
-    this.status = "Dungeton master:" + this.inventory.map(o => o.name).join(", ")
+    //this.status = "Dungeton master:" + this.inventory.map(o => o.name).join(", ")
 
     // let elements = lab.camera.selectInstance(dna.Mob);
     // debugger;
@@ -178,16 +178,25 @@ Master.prototype.evo = function(dt){
     //         elements[k].status = "i see you";
     //     }
     // }
-    this.tiles = res.master;
+
+    this.tiles = res.master
+    this.endTilex = 4
+
     if (this.keys.left){
         this.tiles = res.master_left
+        this.endTilex = 5
     }
     if (this.keys.right){
         this.tiles = res.master_right
+        this.endTilex = 5
     }
     if (this.keys.up){
         this.tiles = res.master_back
+        this.endTilex = 5
     }
+
+    // fix for the case when tilex has got bigger than expected
+    if (this.tilex > this.endTilex) this.tilex = this.startTilex
 };
 
 module.exports = Master;

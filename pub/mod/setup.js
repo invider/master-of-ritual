@@ -22,7 +22,13 @@ module.exports = function() {
         else if (this.keys[3]) this.y += (this.speed/this.scale) * dt
     })
 
-    lab.game.nextLevel();
+    // setup level according to hash
+    if (window.location.hash) {
+        lab.game.nextLevel(parseInt(window.location.hash.substring(1)))
+    } else {
+        lab.game.nextLevel();
+    }
+
 
     sys.spawn('playerInfo', {
        x: 10,

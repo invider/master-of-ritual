@@ -55,12 +55,16 @@ let LevelLoader = {
             };
             let type = TYPEMAP[symbol];
 
-            if (typeof TYPEMAP[symbol] !== "string") {
-                type = TYPEMAP[symbol].proto;
-                sys.augment(params, TYPEMAP[symbol].params);
+            if (type) {
+                if (typeof TYPEMAP[symbol] !== "string") {
+                    type = TYPEMAP[symbol].proto;
+                    sys.augment(params, TYPEMAP[symbol].params);
+                }
+                params.name = params.name || this.formatName(type);
+                sys.spawn(type, params, "camera");
+            } else {
+                log.err('unable to map symbol: ' + symbol)
             }
-            params.name = params.name || this.formatName(type);
-            sys.spawn(type, params, "camera");
         })
         
         params.settings.STORY && lab.game.showStory(res.txt[params.settings.STORY])

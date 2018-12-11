@@ -1,10 +1,12 @@
 Master of Ritual
 ================
 
+Story
+-----
+
 TODO
 ----
 - [ ] Story
-- [ ] WASD movemnts and additional convenient action keys
 - [ ] Pause
 - [ ] Screenshot
 - [ ] Game description
@@ -12,6 +14,7 @@ TODO
 - [ ] Gameplay screenshots
 - [ ] Gameplay video
 - [ ] Publish post-jam version
+- [x] WASD movemnts and additional convenient action keys
 - [x] Publish on itch.io
 - [x] Mobs env tuning
 - [x] Mobs distance wattack

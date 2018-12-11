@@ -187,24 +187,22 @@ Frame.prototype.onAttached = function(node, name, parent) {
 
 Frame.prototype.detach = function(node) {
     if (!node) {
-        if (this.name) {
+        let i = this.__._ls.indexOf(this);
+        if (i >= 0) {
+            // find index on parent
+            this.__._ls.splice(i, 1);
+        }
+        if (this.name && this.__._dir[this.name] === this) {
             this.__.detachByName(node.name);
-        } else {
-            let i = this.__._ls.indexOf(this);
-            if (i >= 0) {
-                // find index on parent
-                this.__._ls.splice(i, 1);
-            }
         }
     } else {
-        if (node.name && (this[node.name] || this._dir[node.name])) {
+        let i = this._ls.indexOf(node);
+        if (i >= 0) {
+            // find index on parent
+            this._ls.splice(i, 1);
+        }
+        if (node.name && (this._dir[node.name]) === node) {
             this.detachByName(node.name);
-        } else {
-            let i = this._ls.indexOf(node);
-            if (i >= 0) {
-                // find index on parent
-                this._ls.splice(i, 1);
-            }
         }
     }
 };
@@ -212,7 +210,6 @@ Frame.prototype.detachAll = function() {
     while(this._ls.length){
         let node = this._ls[0];
         this.detach(node)
-        //node.__.detachByName(node.name);
     }
 };
 Frame.prototype.detachByName = function(name) {
@@ -232,13 +229,14 @@ Frame.prototype.detachByName = function(name) {
         }
     }
 
+    // detach named
     delete this[name];
     delete this._dir[name];
+    // detach by index if exists
     let index = this._ls.indexOf(obj);
-    if (index === -1){
-        throw new Error("No such object in ls:" + name);
+    if (index >= 0){
+        this._ls.splice(index, 1);
     }
-    this._ls.splice(index, 1);
 };
 
 Frame.prototype.apply = function(fn, predicate) {

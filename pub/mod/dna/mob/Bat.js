@@ -7,6 +7,7 @@ let Bat = function(st) {
     this.h = 1
     this.aw = 0.8
     this.ah = 0.5
+    this.either = true
 
     this.tiles = res.bat
     this.startTilex = 0

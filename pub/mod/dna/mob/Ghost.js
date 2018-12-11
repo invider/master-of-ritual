@@ -8,6 +8,7 @@ let Ghost = function(st) {
     this.aw = 0.48
     this.ah = 0.8
     this.solid = false
+    this.either = true
 
     this.tiles = res.ghost
     this.startTilex = 0

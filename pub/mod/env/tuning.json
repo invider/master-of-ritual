@@ -3,6 +3,7 @@
     "labelFont": "jim-nightshade",
     "initialHP": 100,
     "initialMana": 100,
+    "masterSpeed": 1,
 
     "shadow": {
         "radius": 2,
@@ -26,10 +27,10 @@
     "bat": {
         "hp": 25,
         "mana": 0,
-        "speed": 0.4,
+        "speed": 1.05,
         "scan": 2,
         "attack": 1, 
-        "range": 1,
+        "range": 2,
         "cooldown": 0.3,
         "bloodColor": "#ff4000",
         "bloodIntencity": 100,

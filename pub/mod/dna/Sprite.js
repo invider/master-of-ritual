@@ -1,6 +1,9 @@
 'use strict'
 
+let id = 0
+
 let Sprite = function(st) {
+    this.id = id++
     this.Z = 10
 
     this.x = ctx.width/2
@@ -14,6 +17,7 @@ let Sprite = function(st) {
     this.startTilex = 0 // tilex is an index from tilemap
     this.endTilex = 0
     this.tilexTime = 0
+    this.tilexDir = 0
     this.framerate = 1
 
     sys.augment(this, st)
@@ -25,14 +29,22 @@ Sprite.prototype.nextFrame = function(dt) {
     if (this.framerate > 0) {
         this.tilexTime += dt
         if (this.tilexTime > 1/this.framerate) {
+            // calculate next tile
             this.tilexTime -= 1/this.framerate
-            this.tilex ++
+            if (this.tilexDir <= 1) this.tilex++
+            else this.tilex--
 
             if (this.tilex > this.endTilex) {
                 this.tilex = this.startTilex
+                if (this.tilexDir === 1) this.tilexDir = 2
+            } else if (this.tilex <= this.startTilex && this.tilexDir === 2) {
+                this.tilex = this.startTilex
+                this.tilex++
+                this.tilexDir = 1
             }
         }
     }
+    this.status = 'tilex: ' + this.tilex
 };
 
 Sprite.prototype.draw = function() {

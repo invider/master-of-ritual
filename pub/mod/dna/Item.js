@@ -92,11 +92,16 @@ Item.prototype.applyType = function(type){
 
 Item.prototype.hit = function(element){
     if (element instanceof dna.mob.Master){
-        lab.camera.detach(this);
+        this.kill()
         element.inventory.push(this.itemType);
         lib.sfx(res.sfx.pickup2, 0.3)
     }
 };
+
+Item.prototype.kill = function() {
+    this.alive = false
+    lab.camera.detach(this);
+}
 
 Item.prototype.draw = function(){
     dna.Character.prototype.draw.call(this);
