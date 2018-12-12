@@ -1,3 +1,5 @@
+let shots = 0
+
 module.exports = function(e) {
     if (!lab.camera.master) return
 
@@ -16,5 +18,11 @@ module.exports = function(e) {
         case 'ShiftRight': lab.camera.master.keys.spell2 = true; break;
         case 'KeyM': case 'KeyE': lab.camera.master.keys.manapot = true; break;
         case 'KeyH': case 'KeyQ': lab.camera.master.keys.healingpot = true; break;
+
+        case 'Digit8':
+            if (!e.repeat) {
+                lib.img.screenshot('ritual-' + (++shots))
+            }
+            break;
     }
 };
