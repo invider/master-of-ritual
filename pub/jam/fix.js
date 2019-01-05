@@ -117,11 +117,18 @@ let matchType = function(v) {
     let n = parseFloat(v)
     if (!isNaN(n)) return n
     return v
-}
+};
 
 
 // ******************
 // system definitions
+// ******************
+
+/**
+ * @alias sys.Frame
+ * @param initObj
+ * @constructor
+ */
 let Frame = function(initObj) {
     this._ = this
     this._ls = []

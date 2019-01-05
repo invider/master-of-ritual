@@ -1,4 +1,10 @@
 'use strict'
+/**
+ * @alias dna.Item
+ * @param st
+ * @constructor
+ */
+
 let Item = function(st) {
     dna.Character.call(this, st);
 

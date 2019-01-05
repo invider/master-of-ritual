@@ -1,4 +1,9 @@
 // @depends(dna/Sprite)
+/**
+ * @alias dna.LevelWall
+ * @param st
+ * @constructor
+ */
 let LevelWall = function(st) {
     dna.Sprite.call(this, st);
     this.solid = true

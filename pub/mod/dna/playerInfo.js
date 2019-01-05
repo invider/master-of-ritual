@@ -1,3 +1,7 @@
+/**
+ * @alias dna.playerInfo
+ * @returns {sys.Frame}
+ */
 var playerInfo = function() {
 
     return new sys.Frame({

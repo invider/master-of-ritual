@@ -2,12 +2,17 @@
 
 const FLIP_TIME = 0.75
 
+/**
+ *
+ * @param st
+ * @extends dna.Sprite
+ * @alias dna.Character
+ */
 // @depends(dna/Sprite)
 
 let Character = function(st) {
     dna.Sprite.call(this, st);
     this.Z = 50
-
     this.alive = true
     this.solid = true // indicates, that we can't pass through the walls
     this.collidable = true // indicates if we can hit other mobs

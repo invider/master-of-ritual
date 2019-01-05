@@ -1,3 +1,8 @@
+/**
+ * @alias dna.menu
+ * @param st
+ * @constructor
+ */
 var Menu = function(st) {
     sys.augment(this, st)
     this.ingredientMargin = 138;

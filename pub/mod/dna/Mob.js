@@ -1,7 +1,11 @@
 'use strict'
 
 // @depends(dna/Character)
-
+/**
+ * @alias dna.Mob
+ * @param st
+ * @constructor
+ */
 let Mob = function(st) {
     dna.Character.call(this, st);
     this.Z = 52

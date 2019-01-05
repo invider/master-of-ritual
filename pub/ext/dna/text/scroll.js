@@ -1,5 +1,5 @@
+/** @alias lab.scroll */
 module.exports = function(init) {
-
     let res = {
         timer: 0,
         dtimer: 1,
@@ -47,4 +47,4 @@ module.exports = function(init) {
 
     sys.augment(res, init)
     return res
-}
+};

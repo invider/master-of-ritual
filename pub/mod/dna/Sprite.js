@@ -1,7 +1,11 @@
 'use strict'
 
 let id = 0
-
+/**
+ * @alias dna.Sprite
+ * @param st
+ * @constructor
+ */
 let Sprite = function(st) {
     this.id = id++
     this.Z = 10
