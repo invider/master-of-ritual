@@ -63,3 +63,8 @@ typings/
 
 # MacOS X
 .DS_Store
+
+# collider
+out
+dist
+

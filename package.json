@@ -5,7 +5,7 @@
     "scripts": {
         "start": "node ./node_modules/collider.jam/jam.js"
     },
-   "dependencies": {
+    "dependencies": {
         "collider.jam": "https://github.com/invider/collider.jam.git",
         "collider.mix": "https://github.com/invider/collider.mix.git",
         "collider-boot.mix": "https://github.com/invider/collider-boot.mix.git",
