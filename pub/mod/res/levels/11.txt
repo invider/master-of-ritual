@@ -1,8 +1,0 @@
-GOALS=wing:2
-STORY=story_level1
-^^^SETTINGS^^^
-*******************
-*   *      b *    *
-* @  HHMM      A  *
-*   *      b *    *
-*******************

@@ -1,8 +1,0 @@
-GOALS=bone:1, wing:2
-STORY=story_level1
-^^^SETTINGS^^^
-*************
-*M *   * b  *
-*@   A     s*
-*H *   * b  *
-*************
