@@ -1,0 +1,18 @@
+GOALS=eye:7, bone:8, wing:10
+STORY=story_level1
+^^^SETTINGS^^^
+    ***********
+    * A *  ****
+****** **  * s*****
+* @ * z    *  *b z*******
+* M ** ***** z*bz    s  *
+* M *  **  ** z z *M MMM*
+**H** z**  *  *******M******
+* H *  Hb  M  * bb  *M g  H*
+*b  ***********  *  * s  s *
+*   bb*  s    g  *g *MMM   *
+*b    *    *******  ****  ***
+*  b  *     s    *    g    M*
+*   ********** s *        g *
+*   MHMMH   s    *M g    g H*
+*****************************
