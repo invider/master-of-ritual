@@ -12,9 +12,8 @@ And each portal will tell you what it needs to be opened.
 
 TODO
 ----
-- [ ] Publish post-jam version
-- [ ] Gameplay video
-- [ ] Pause
+- [x] Publish post-jam version
+- [x] Pause
 - [x] Story
 - [x] Game description
 - [x] Game icon and cover art
